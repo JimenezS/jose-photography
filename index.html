@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jose Jimenez | Professional Photography</title>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #fcfcfc;
+            --accent: #888;
+            --text: #333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--text); background: var(--secondary); line-height: 1.6; }
+        
+        header { padding: 80px 20px 50px; text-align: center; }
+        header h1 { font-size: 3rem; font-weight: 300; letter-spacing: 5px; color: var(--primary); text-transform: uppercase; }
+        header p { font-size: 1.1rem; color: var(--accent); margin-top: 10px; letter-spacing: 2px; text-transform: uppercase; }
+        
+        nav { display: flex; justify-content: center; gap: 40px; padding: 20px; background: rgba(252, 252, 252, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #eee; backdrop-filter: blur(8px); }
+        nav a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s; }
+        nav a:hover { color: var(--accent); }
+        
+        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #eee; }
+        section:last-of-type { border-bottom: none; }
+        h2 { text-align: center; font-size: 2.2rem; margin-bottom: 20px; font-weight: 300; color: var(--primary); letter-spacing: 2px; }
+        .section-desc { text-align: center; max-width: 700px; margin: 0 auto 50px; color: var(--accent); font-size: 1.05rem; }
+        
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .gallery img { width: 100%; height: 450px; object-fit: cover; border-radius: 4px; transition: transform 0.4s ease, box-shadow 0.4s ease; background: #eee; }
+        .gallery img:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px; }
+        .pricing-card { background: #fff; padding: 50px 40px; border-radius: 8px; border: 1px solid #eee; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: transform 0.3s; }
+        .pricing-card:hover { transform: translateY(-5px); border-color: #ddd; }
+        .pricing-card h3 { margin-bottom: 15px; font-size: 1.4rem; font-weight: 400; }
+        .pricing-card .price { font-size: 2rem; font-weight: 300; margin-bottom: 30px; color: var(--primary); }
+        .pricing-card ul { list-style: none; text-align: left; margin-bottom: 30px; }
+        .pricing-card ul li { margin-bottom: 15px; font-size: 0.95rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 10px; color: #555; }
+        
+        form { display: flex; flex-direction: column; gap: 20px; max-width: 600px; margin: 0 auto; }
+        input, select, textarea { width: 100%; padding: 16px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; font-size: 1rem; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary); }
+        button { padding: 20px; background: var(--primary); color: #fff; border: none; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; transition: background 0.3s; }
+        button:hover { background: #444; }
+        
+        footer { text-align: center; padding: 40px; color: var(--accent); font-size: 0.9rem; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Jose Jimenez</h1>
+        <p>Premium Architectural & Portrait Photography</p>
+    </header>
+
+    <nav>
+        <a href="#real-estate">Real Estate</a>
+        <a href="#engagements">Engagements</a>
+        <a href="#pricing">Investment</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="real-estate">
+        <h2>Property & Architectural Media</h2>
+        <p class="section-desc">Crisp, bright, and meticulously composed imagery designed to make your South Florida listings stand out on the MLS. Shot with highly accurate color science and perfectly straightened verticals.</p>
+        <div class="gallery">
+            <img src="placeholder-re1.jpg" alt="Living Room Wide">
+            <img src="placeholder-re2.jpg" alt="Kitchen Detail">
+            <img src="placeholder-re3.jpg" alt="Bathroom Vertical">
+        </div>
+    </section>
+
+    <section id="engagements">
+        <h2>Authentic Engagements</h2>
+        <p class="section-desc">100% natural-light outdoor portraiture capturing genuine connection and motion. No stiff posing—just vibrant, sun-drenched environments and true-to-life skin tones.</p>
+        <div class="gallery">
+            <img src="placeholder-eng1.jpg" alt="Golden Hour Beach">
+            <img src="placeholder-eng2.jpg" alt="Ring Detail Handhold">
+            <img src="placeholder-eng3.jpg" alt="Couple Embrace Ocean">
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2>Services & Packages</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Standard MLS Listing</h3>
+                <div class="price">Starting at $250</div>
+                <ul>
+                    <li>Homes 1,500 – 3,000 sq ft</li>
+                    <li>25–40 high-res edited photos</li>
+                    <li>Advanced vertical correction</li>
+                    <li>Ambient window light balancing</li>
+                    <li>Guaranteed 24-48 hour turnaround</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>The Golden Hour Session</h3>
+                <div class="price">Starting at $350</div>
+                <ul>
+                    <li>Up to 90-minute outdoor session</li>
+                    <li>1 to 2 nearby locations</li>
+                    <li>50+ professionally edited digital images</li>
+                    <li>Styling and prompt-based posing guide</li>
+                    <li>Private online gallery & print release</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Book a Session</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email Address" required>
+            <select required>
+                <option value="" disabled selected>Select a Service Type...</option>
+                <option value="real_estate">Real Estate Listing</option>
+                <option value="engagement">Engagement Session</option>
+            </select>
+            <textarea rows="5" placeholder="Tell me about your listing details or portrait vision..." required></textarea>
+            <button type="submit">Submit Inquiry</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Jose Jimenez Photography. Miami, FL.</p>
+    </footer>
+
+</body>
+</html>
