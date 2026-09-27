@@ -1,0 +1,87 @@
+/* Import Google Fonts: Josefin Sans and Lato */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --primary: #1a1a1a;
+    --secondary: #fdfdfd;
+    --accent: #888;
+    --text: #333;
+    --pastel-green: #d4e0d4;
+    --green-hover: #c4d2c4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    font-family: 'Lato', sans-serif; 
+    font-weight: 400;
+    color: var(--text); 
+    background: var(--secondary); 
+    line-height: 1.7; 
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    color: var(--primary);
+}
+
+/* Hero Banner Parallax */
+header { 
+    height: 75vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    padding: 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('img/engagements/9-DSC07675.jpg');
+    background-size: cover;
+    background-position: center; 
+    background-attachment: fixed; 
+}
+
+header h1 { font-size: 4.5rem; letter-spacing: 6px; text-transform: uppercase; color: #fff; text-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+header p { font-size: 1.15rem; font-weight: 300; color: #fdfdfd; margin-top: 15px; letter-spacing: 4px; text-transform: uppercase; font-family: 'Lato', sans-serif; text-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+
+nav { display: flex; justify-content: center; gap: 40px; padding: 20px; background: rgba(253, 253, 253, 0.95); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #eee; backdrop-filter: blur(8px); }
+nav a { text-decoration: none; color: var(--primary); font-family: 'Josefin Sans', sans-serif; font-weight: 400; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s, border-bottom 0.3s; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+nav a:hover { color: var(--accent); border-bottom: 2px solid var(--pastel-green); }
+
+section { padding: 90px 20px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #eee; }
+section:last-of-type { border-bottom: none; }
+
+h2 { text-align: center; font-size: 2.8rem; margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
+.section-desc { text-align: center; max-width: 700px; margin: 0 auto 50px; color: var(--accent); font-size: 1.1rem; font-weight: 300; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+.gallery img { width: 100%; height: 500px; object-fit: cover; border-radius: 2px; transition: transform 0.5s ease, box-shadow 0.5s ease; background: #eee; }
+.gallery img:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 50px; }
+.pricing-card { background: var(--pastel-green); padding: 50px 40px; border-radius: 4px; text-align: center; transition: transform 0.4s, box-shadow 0.4s; box-shadow: 0 4px 15px rgba(212, 224, 212, 0.2); }
+.pricing-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(212, 224, 212, 0.6); }
+.pricing-card h3 { margin-bottom: 15px; font-size: 1.8rem; letter-spacing: 1px; text-transform: uppercase; }
+.pricing-card .price { font-size: 2.2rem; font-weight: 400; margin-bottom: 30px; font-family: 'Lato', sans-serif; color: var(--primary); }
+.pricing-card ul { list-style: none; text-align: left; margin-bottom: 30px; }
+.pricing-card ul li { margin-bottom: 15px; font-size: 1.05rem; font-weight: 400; border-bottom: 1px solid rgba(255, 255, 255, 0.4); padding-bottom: 10px; color: var(--primary); }
+
+form { display: flex; flex-direction: column; gap: 20px; max-width: 600px; margin: 0 auto; }
+input, select, textarea { width: 100%; padding: 18px; border: 1px solid #ddd; border-radius: 2px; font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 300; background: #fafafa; transition: border-color 0.3s; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--pastel-green); background: #fff; }
+button { padding: 20px; background: var(--pastel-green); color: var(--primary); border: none; border-radius: 2px; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; font-family: 'Josefin Sans', sans-serif; font-size: 1.1rem; font-weight: 400; transition: background 0.3s, color 0.3s; }
+button:hover { background: var(--green-hover); color: #000; }
+
+footer { text-align: center; padding: 50px; color: var(--accent); font-size: 0.9rem; font-weight: 300; letter-spacing: 1px; }
+
+/* Apple-style Smooth Scroll Reveal Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
