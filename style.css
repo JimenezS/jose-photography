@@ -136,7 +136,7 @@ header {
 }
 
 .realestate-hero .hero-bg {
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('placeholder-re1.jpg') center center / cover no-repeat fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('img/real-estate/2-DSC06690.jpg') center center / cover no-repeat fixed;
     background-position: center;
 }
 
@@ -196,7 +196,7 @@ header p {
 
 .divider-realestate-bg {
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
-                url('placeholder-re2.jpg') center center / cover no-repeat;
+                url('img/real-estate/1.png') center center / cover no-repeat;
      background-position: center 20%;
 }
 
