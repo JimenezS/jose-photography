@@ -75,14 +75,14 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
 /* Mid-Page Parallax Divider Banners */
 .divider-banner {
     height: 45vh;
-    background-size: cover;
-    background-position: center;
-	background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin: 60px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    padding: 20px;
+    position: relative;
+	overflow: hidden;
 }
 
 .divider-engagement .hero-bg {

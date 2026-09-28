@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let scrollY = window.scrollY;
             // Adjust the multiplier (e.g., 0.3) to control speed. 
             // 0.3 means the image scrolls at 30% of the page speed.
-            heroBg.style.transform = `translateY(${scrollY * 1.3}px)`;
+            heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
         });
     }
 });
