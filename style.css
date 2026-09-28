@@ -139,7 +139,11 @@ header {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('placeholder-re1.jpg') center center / cover no-repeat fixed;
     background-position: center;
 }
-
+/* Highlight the Client Access nav item */
+.client-portal-link {
+    color: var(--re-wood-warm, var(--primary)) !important;
+    font-weight: 700 !important;
+}
 header h1, header p, .hero-content {
     position: relative;
     z-index: 1;
@@ -595,9 +599,4 @@ body.real-estate-theme .selected-package-indicator {
         flex: 0 0 300px;
         height: 400px;
     }
-}
-/* Highlight the Client Access nav item */
-.client-portal-link {
-    color: var(--re-wood-warm, var(--primary)) !important;
-    font-weight: 700 !important;
 }
