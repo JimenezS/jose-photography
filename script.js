@@ -127,43 +127,98 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
-	// 6. Gallery Lightbox Modal Integration
-const galleryImages = document.querySelectorAll('.gallery img');
-const lightbox = document.getElementById('lightbox-modal');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.querySelector('.lightbox-close');
+	// 6. Advanced Gallery & Carousel Lightbox with Arrows, Keyboard, & Swipe Support
+	const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
+	const lightbox = document.getElementById('lightbox-modal');
+	const lightboxImg = document.getElementById('lightbox-img');
+	const lightboxClose = document.querySelector('.lightbox-close');
+	const lightboxPrev = document.querySelector('.lightbox-prev');
+	const lightboxNext = document.querySelector('.lightbox-next');
 
-if (lightbox && galleryImages.length > 0) {
-    galleryImages.forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            lightbox.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        });
-    });
+	let currentIndex = 0;
 
-    const closeLightbox = () => {
-        lightbox.classList.remove('show');
-        document.body.style.overflow = 'auto'; // Restore background scrolling
-    };
+	if (lightbox && lightboxImages.length > 0) {
+		const showImage = (index) => {
+			// Loop around if reaching the ends
+			if (index < 0) {
+				currentIndex = lightboxImages.length - 1;
+			} else if (index >= lightboxImages.length) {
+				currentIndex = 0;
+			} else {
+				currentIndex = index;
+			}
+			lightboxImg.src = lightboxImages[currentIndex].src;
+			lightboxImg.alt = lightboxImages[currentIndex].alt;
+		};
 
-    if (lightboxClose) {
-        lightboxClose.addEventListener('click', closeLightbox);
-    }
+		// Open lightbox when any gallery or carousel image is clicked
+		lightboxImages.forEach((img, idx) => {
+			img.addEventListener('click', () => {
+				showImage(idx);
+				lightbox.classList.add('show');
+				document.body.style.overflow = 'hidden'; // Lock background scroll
+			});
+		});
 
-    // Close when clicking anywhere outside the image background
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
+		const closeLightbox = () => {
+			lightbox.classList.remove('show');
+			document.body.style.overflow = 'auto'; // Restore background scroll
+		};
 
-    // Close when pressing the Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('show')) {
-            closeLightbox();
-        }
-    });
-}
+		if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+		
+		// Arrow button click handlers
+		if (lightboxPrev) {
+			lightboxPrev.addEventListener('click', (e) => {
+				e.stopPropagation();
+				showImage(currentIndex - 1);
+			});
+		}
+		
+		if (lightboxNext) {
+			lightboxNext.addEventListener('click', (e) => {
+				e.stopPropagation();
+				showImage(currentIndex + 1);
+			});
+		}
+
+		// Close when clicking background backdrop
+		lightbox.addEventListener('click', (e) => {
+			if (e.target === lightbox) {
+				closeLightbox();
+			}
+		});
+
+		// Touch Swipe Support for Mobile Devices
+		let touchStartX = 0;
+		let touchEndX = 0;
+
+		lightbox.addEventListener('touchstart', (e) => {
+			touchStartX = e.changedTouches[0].screenX;
+		}, { passive: true });
+
+		lightbox.addEventListener('touchend', (e) => {
+			touchEndX = e.changedTouches[0].screenX;
+			handleSwipe();
+		}, { passive: true });
+
+		const handleSwipe = () => {
+			const swipeThreshold = 50;
+			if (touchEndX < touchStartX - swipeThreshold) {
+				showImage(currentIndex + 1); // Swipe Left -> Next Image
+			}
+			if (touchEndX > touchStartX + swipeThreshold) {
+				showImage(currentIndex - 1); // Swipe Right -> Previous Image
+			}
+		};
+
+		// Keyboard controls (Escape to close, Left/Right arrows to cycle)
+		document.addEventListener('keydown', (e) => {
+			if (!lightbox.classList.contains('show')) return;
+			
+			if (e.key === 'Escape') closeLightbox();
+			if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+			if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+		});
+	}
 });

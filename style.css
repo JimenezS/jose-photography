@@ -686,3 +686,49 @@ body.real-estate-theme .selected-package-indicator {
 .lightbox-close:hover {
     color: #d4af37;
 }
+/* ==========================================
+   LIGHTBOX NAVIGATION BUTTONS & TOUCH STYLES
+   ========================================== */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    font-size: 28px;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    z-index: 2001;
+    user-select: none;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #d4af37;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.lightbox-prev {
+    left: 30px;
+}
+
+.lightbox-next {
+    right: 30px;
+}
+
+/* Mobile Adjustments for Lightbox Arrows */
+@media (max-width: 768px) {
+    .lightbox-nav {
+        padding: 10px 14px;
+        font-size: 20px;
+    }
+    .lightbox-prev {
+        left: 12px;
+    }
+    .lightbox-next {
+        right: 12px;
+    }
+}
