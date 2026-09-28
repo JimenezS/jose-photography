@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, { passive: true });
     }
 
-    // 3. Modern Carousel Navigation Logic
+    // 3. Modern Carousel Arrow Navigation Logic
     const track = document.querySelector('.carousel-track');
     const prevBtn = document.querySelector('.carousel-btn.prev');
     const nextBtn = document.querySelector('.carousel-btn.next');
@@ -70,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const formData = new FormData(contactForm);
 
             try {
-                // Replace with your Formspree endpoint when ready
                 const response = await fetch('https://formspree.io/f/xrpbovpq', {
                     method: 'POST',
                     body: formData,
@@ -89,7 +88,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-	// 5. Interactive Pricing Card Selection & Auto-Scroll with Dynamic Add-on Toggle
+
+    // 5. Interactive Pricing Card Selection & Auto-Scroll with Dynamic Add-on Toggle
     const pricingCards = document.querySelectorAll('.pricing-card');
     const packageInput = document.getElementById('selected-package-input');
     const packageDisplay = document.getElementById('package-display');
@@ -99,216 +99,143 @@ document.addEventListener("DOMContentLoaded", function() {
     if (pricingCards.length > 0 && packageInput) {
         pricingCards.forEach(card => {
             card.addEventListener('click', () => {
-                // Remove active class from all cards, add to clicked one
                 pricingCards.forEach(c => c.classList.remove('selected-card'));
                 card.classList.add('selected-card');
 
-                // Extract package name from data attribute
                 const packageName = card.getAttribute('data-package');
 
-                // Update hidden input and live text indicator
                 packageInput.value = packageName;
                 if (packageDisplay) {
                     packageDisplay.innerText = `Selected Package: ${packageName}`;
                 }
 
-                // Show add-on option ONLY if the $195 package is selected
                 if (packageName.includes('$195')) {
                     if (albumAddon) albumAddon.style.display = 'flex';
                 } else {
                     if (albumAddon) {
                         albumAddon.style.display = 'none';
-                        if (albumCheckbox) albumCheckbox.checked = false; // Reset checkbox if hidden
+                        if (albumCheckbox) albumCheckbox.checked = false; 
                     }
                 }
 
-                // Smoothly glide down to the contact form
                 document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             });
         });
     }
-	// 6. Advanced Gallery & Carousel Lightbox with Arrows, Keyboard, & Swipe Support
-	const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
-	const lightbox = document.getElementById('lightbox-modal');
-	const lightboxImg = document.getElementById('lightbox-img');
-	const lightboxClose = document.querySelector('.lightbox-close');
-	const lightboxPrev = document.querySelector('.lightbox-prev');
-	const lightboxNext = document.querySelector('.lightbox-next');
 
-	let currentIndex = 0;
+    // 6. Dynamic Carousel Population from Array
+    const carouselImages = [
+        "10-DSC07650.jpg",
+        "12-DSC07526.jpg",
+        "13-DSC07427.jpg",
+        "7-DSC07952.jpg",
+        "11-DSC07548.jpg",
+        "14-DSC07421.jpg"
+        // To add a new photo later, just add its filename here!
+    ];
 
-	if (lightbox && lightboxImages.length > 0) {
-		const showImage = (index) => {
-			// Loop around if reaching the ends
-			if (index < 0) {
-				currentIndex = lightboxImages.length - 1;
-			} else if (index >= lightboxImages.length) {
-				currentIndex = 0;
-			} else {
-				currentIndex = index;
-			}
-			lightboxImg.src = lightboxImages[currentIndex].src;
-			lightboxImg.alt = lightboxImages[currentIndex].alt;
-		};
+    const dynamicTrack = document.getElementById('dynamic-carousel-track');
+    if (dynamicTrack) {
+        carouselImages.forEach((filename, index) => {
+            const card = document.createElement('div');
+            card.className = 'carousel-card';
+            
+            const img = document.createElement('img');
+            img.src = `img/engagements/${filename}`;
+            img.alt = `Highlight ${index + 1}`;
+            
+            card.appendChild(img);
+            dynamicTrack.appendChild(card);
+        });
+    }
 
-		// Open lightbox when any gallery or carousel image is clicked
-		lightboxImages.forEach((img, idx) => {
-			img.addEventListener('click', () => {
-				showImage(idx);
-				lightbox.classList.add('show');
-				document.body.style.overflow = 'hidden'; // Lock background scroll
-			});
-		});
-
-		const closeLightbox = () => {
-			lightbox.classList.remove('show');
-			document.body.style.overflow = 'auto'; // Restore background scroll
-		};
-
-		if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-		
-		// Arrow button click handlers
-		if (lightboxPrev) {
-			lightboxPrev.addEventListener('click', (e) => {
-				e.stopPropagation();
-				showImage(currentIndex - 1);
-			});
-		}
-		
-		if (lightboxNext) {
-			lightboxNext.addEventListener('click', (e) => {
-				e.stopPropagation();
-				showImage(currentIndex + 1);
-			});
-		}
-
-		// Close when clicking background backdrop
-		lightbox.addEventListener('click', (e) => {
-			if (e.target === lightbox) {
-				closeLightbox();
-			}
-		});
-
-		// Touch Swipe Support for Mobile Devices
-		let touchStartX = 0;
-		let touchEndX = 0;
-
-		lightbox.addEventListener('touchstart', (e) => {
-			touchStartX = e.changedTouches[0].screenX;
-		}, { passive: true });
-
-		lightbox.addEventListener('touchend', (e) => {
-			touchEndX = e.changedTouches[0].screenX;
-			handleSwipe();
-		}, { passive: true });
-
-		const handleSwipe = () => {
-			const swipeThreshold = 50;
-			if (touchEndX < touchStartX - swipeThreshold) {
-				showImage(currentIndex + 1); // Swipe Left -> Next Image
-			}
-			if (touchEndX > touchStartX + swipeThreshold) {
-				showImage(currentIndex - 1); // Swipe Right -> Previous Image
-			}
-		};
-
-		// Keyboard controls (Escape to close, Left/Right arrows to cycle)
-		document.addEventListener('keydown', (e) => {
-			if (!lightbox.classList.contains('show')) return;
-			
-			if (e.key === 'Escape') closeLightbox();
-			if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
-			if (e.key === 'ArrowRight') showImage(currentIndex + 1);
-		});
-	}
-	// 7. Dynamic Carousel & Advanced Lightbox Integration
-	const carouselImages = [
-		"10-DSC07650.jpg",
-		"12-DSC07526.jpg",
-		"13-DSC07427.jpg",
-		"7-DSC07952.jpg",
-		"11-DSC07548.jpg",
-		"14-DSC07421.jpg"
-		// To add a new photo later, just drop the filename here: e.g., "new-photo.jpg"
-	];
-
-	document.addEventListener("DOMContentLoaded", () => {
-		const track = document.getElementById('dynamic-carousel-track');
-		if (!track) return;
-
-		// Build carousel cards dynamically from the array
-		carouselImages.forEach((filename, index) => {
-			const card = document.createElement('div');
-			card.className = 'carousel-card';
-			
-			const img = document.createElement('img');
-			img.src = `img/engagements/${filename}`;
-			img.alt = `Highlight ${index + 1}`;
-			
-			card.appendChild(img);
-			track.appendChild(card);
-		});
-
-		// Initialize Lightbox for both main gallery and carousel images
-		initializeLightbox();
-	});
-
-	function initializeLightbox() {
-		const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
-		const lightbox = document.getElementById('lightbox-modal');
-		const lightboxImg = document.getElementById('lightbox-img');
-		const lightboxClose = document.querySelector('.lightbox-close');
-		const lightboxPrev = document.querySelector('.lightbox-prev');
-		const lightboxNext = document.querySelector('.lightbox-next');
-
-		let currentIndex = 0;
-
-		if (lightbox && lightboxImages.length > 0) {
-			const showImage = (index) => {
-				if (index < 0) currentIndex = lightboxImages.length - 1;
-				else if (index >= lightboxImages.length) currentIndex = 0;
-				else currentIndex = index;
-				
-				lightboxImg.src = lightboxImages[currentIndex].src;
-				lightboxImg.alt = lightboxImages[currentIndex].alt;
-			};
-
-			lightboxImages.forEach((img, idx) => {
-				img.onclick = () => {
-					showImage(idx);
-					lightbox.classList.add('show');
-					document.body.style.overflow = 'hidden';
-				};
-			});
-
-			const closeLightbox = () => {
-				lightbox.classList.remove('show');
-				document.body.style.overflow = 'auto';
-			};
-
-			if (lightboxClose) lightboxClose.onclick = closeLightbox;
-			if (lightboxPrev) lightboxPrev.onclick = (e) => { e.stopPropagation(); showImage(currentIndex - 1); };
-			if (lightboxNext) lightboxNext.onclick = (e) => { e.stopPropagation(); showImage(currentIndex + 1); };
-
-			lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
-
-			// Touch Swipe & Keyboard Navigation
-			let touchStartX = 0;
-			let touchEndX = 0;
-
-			lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-			lightbox.addEventListener('touchend', (e) => { 
-				touchEndX = e.changedTouches[0].screenX;
-				if (touchEndX < touchStartX - 50) showImage(currentIndex + 1);
-				if (touchEndX > touchStartX + 50) showImage(currentIndex - 1);
-			}, { passive: true });
-
-			document.addEventListener('keydown', (e) => {
-				if (!lightbox.classList.contains('show')) return;
-				if (e.key === 'Escape') closeLightbox();
-				if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
-				if (e.key === 'ArrowRight') showImage(currentIndex + 1);
-			});
-		}
-	}
+    // 7. Advanced Gallery & Carousel Lightbox Initialization
+    initializeLightbox();
 });
+
+// Lightbox Logic Helper Function
+function initializeLightbox() {
+    const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
+    const lightbox = document.getElementById('lightbox-modal');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+
+    let currentIndex = 0;
+
+    if (lightbox && lightboxImages.length > 0) {
+        const showImage = (index) => {
+            if (index < 0) {
+                currentIndex = lightboxImages.length - 1;
+            } else if (index >= lightboxImages.length) {
+                currentIndex = 0;
+            } else {
+                currentIndex = index;
+            }
+            lightboxImg.src = lightboxImages[currentIndex].src;
+            lightboxImg.alt = lightboxImages[currentIndex].alt;
+        };
+
+        lightboxImages.forEach((img, idx) => {
+            img.addEventListener('click', () => {
+                showImage(idx);
+                lightbox.classList.add('show');
+                document.body.style.overflow = 'hidden'; 
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto'; 
+        };
+
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        
+        if (lightboxPrev) {
+            lightboxPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showImage(currentIndex - 1);
+            });
+        }
+        
+        if (lightboxNext) {
+            lightboxNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showImage(currentIndex + 1);
+            });
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', (e) => { 
+            touchEndX = e.changedTouches[0].screenX;
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                showImage(currentIndex + 1); 
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                showImage(currentIndex - 1); 
+            }
+        }, { passive: true });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('show')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+            if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+        });
+    }
+}
