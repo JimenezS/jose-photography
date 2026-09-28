@@ -123,25 +123,16 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 6. Dynamic Carousel Population from Array
-    const carouselImages = [
-        "10-DSC07650.jpg",
-        "12-DSC07526.jpg",
-        "13-DSC07427.jpg",
-        "7-DSC07952.jpg",
-        "11-DSC07548.jpg",
-        "14-DSC07421.jpg",
-		"1-DSC01633.jpg",
-		"3-DSC01614.jpg",
-		"9-DSC07675.jpg",
-        // To add a new photo later, just add its filename here!
-    ];
-	const realEstateImages = [
-        "1.png", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"
-        // Add your real estate highlight filenames here as you get them!
+    // 6. Dynamic Carousel Population (Handles both Engagement & Real Estate pages)
+    const engagementImages = [
+        "10-DSC07650.jpg", "12-DSC07526.jpg", "13-DSC07427.jpg",
+        "7-DSC07952.jpg", "11-DSC07548.jpg", "14-DSC07421.jpg"
     ];
 
-    // Populate Engagement Carousel if track exists
+    const realEstateImages = [
+        "1.png", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"
+    ];
+
     const engagementTrack = document.getElementById('dynamic-carousel-track');
     if (engagementTrack) {
         engagementImages.forEach((filename, index) => {
@@ -152,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Populate Real Estate Carousel if track exists
     const realEstateTrack = document.getElementById('dynamic-real-estate-carousel-track');
     if (realEstateTrack) {
         realEstateImages.forEach((filename, index) => {
@@ -163,10 +153,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 7. Advanced Gallery & Lightbox Initialization for whichever page is active
+    // 7. Advanced Gallery & Lightbox Initialization
     initializeLightbox();
 });
 
+// Lightbox Logic Helper Function
 function initializeLightbox() {
     const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
     const lightbox = document.getElementById('lightbox-modal');
@@ -191,11 +182,11 @@ function initializeLightbox() {
         };
 
         lightboxImages.forEach((img, idx) => {
-            img.onclick = () => {
+            img.addEventListener('click', () => {
                 showImage(idx);
                 lightbox.classList.add('show');
                 document.body.style.overflow = 'hidden'; 
-            };
+            });
         });
 
         const closeLightbox = () => {
@@ -203,28 +194,52 @@ function initializeLightbox() {
             document.body.style.overflow = 'auto'; 
         };
 
-        if (lightboxClose) lightboxClose.onclick = closeLightbox;
-        if (lightboxPrev) lightboxPrev.onclick = (e) => { e.stopPropagation(); showImage(currentIndex - 1); };
-        if (lightboxNext) lightboxNext.onclick = (e) => { e.stopPropagation(); showImage(currentIndex + 1); };
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        
+        if (lightboxPrev) {
+            lightboxPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showImage(currentIndex - 1);
+            });
+        }
+        
+        if (lightboxNext) {
+            lightboxNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showImage(currentIndex + 1);
+            });
+        }
 
-        lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
 
         let touchStartX = 0;
         let touchEndX = 0;
 
-        lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
         lightbox.addEventListener('touchend', (e) => { 
             touchEndX = e.changedTouches[0].screenX;
-            if (touchEndX < touchStartX - 50) showImage(currentIndex + 1); 
-            if (touchEndX > touchStartX + 50) showImage(currentIndex - 1); 
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                showImage(currentIndex + 1); 
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                showImage(currentIndex - 1); 
+            }
         }, { passive: true });
 
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('show')) return;
+            
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
             if (e.key === 'ArrowRight') showImage(currentIndex + 1);
         });
     }
-}
 }
