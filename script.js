@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         rootMargin: "0px 0px -50px 0px" 
     });
 
-    document.querySelectorAll('.reveal').forEach((el) => {
+    document.querySelectorAll('.reveal, .gallery img').forEach((el) => {
         observer.observe(el);
     });
 
