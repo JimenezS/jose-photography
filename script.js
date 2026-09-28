@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     
                     // Adjust speed safely here (e.g., 0.4 to 0.6)
                     const speed = 0.5; 
-                    bg.style.transform = `translateY(${distanceCenter * speed}px)`;
+                    bg.style.transform = `translateY(${-distanceCenter * speed}px)`;
                 }
             });
         });
