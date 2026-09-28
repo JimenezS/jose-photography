@@ -732,3 +732,56 @@ body.real-estate-theme .selected-package-indicator {
         right: 12px;
     }
 }
+/* ==========================================
+   REAL ESTATE CINEMATIC LANDSCAPE GALLERY
+   ========================================== */
+.real-estate-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.real-estate-gallery img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10; /* Clean cinematic horizontal ratio */
+    object-fit: cover;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+/* Make every 3rd image span both columns for an architectural feature look */
+.real-estate-gallery img:nth-child(3n) {
+    grid-column: span 2;
+    aspect-ratio: 21 / 9; /* Ultra-wide panoramic feel */
+}
+
+.real-estate-gallery img.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.real-estate-gallery img.active:hover {
+    transform: scale(1.02);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+/* Mobile Responsiveness for Real Estate Gallery */
+@media (max-width: 768px) {
+    .real-estate-gallery {
+        grid-template-columns: 1fr;
+    }
+    .real-estate-gallery img:nth-child(3n) {
+        grid-column: span 1;
+        aspect-ratio: 16 / 10;
+    }
+}

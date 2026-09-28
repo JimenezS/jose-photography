@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         rootMargin: "0px 0px 0px 0px" 
     });
 
-    document.querySelectorAll('.reveal, .gallery img').forEach((el) => {
+    document.querySelectorAll('.reveal, .gallery img, .real-estate-gallery img').forEach((el) => {
         observer.observe(el);
     });
 
@@ -157,89 +157,89 @@ document.addEventListener("DOMContentLoaded", function() {
     initializeLightbox();
 });
 
-// Lightbox Logic Helper Function
-function initializeLightbox() {
-    const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
-    const lightbox = document.getElementById('lightbox-modal');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const lightboxPrev = document.querySelector('.lightbox-prev');
-    const lightboxNext = document.querySelector('.lightbox-next');
+	// Lightbox Logic Helper Function
+	function initializeLightbox() {
+		const lightboxImages = document.querySelectorAll('.gallery img, .real-estate-gallery img, .carousel-card img');
+		const lightbox = document.getElementById('lightbox-modal');
+		const lightboxImg = document.getElementById('lightbox-img');
+		const lightboxClose = document.querySelector('.lightbox-close');
+		const lightboxPrev = document.querySelector('.lightbox-prev');
+		const lightboxNext = document.querySelector('.lightbox-next');
 
-    let currentIndex = 0;
+		let currentIndex = 0;
 
-    if (lightbox && lightboxImages.length > 0) {
-        const showImage = (index) => {
-            if (index < 0) {
-                currentIndex = lightboxImages.length - 1;
-            } else if (index >= lightboxImages.length) {
-                currentIndex = 0;
-            } else {
-                currentIndex = index;
-            }
-            lightboxImg.src = lightboxImages[currentIndex].src;
-            lightboxImg.alt = lightboxImages[currentIndex].alt;
-        };
+		if (lightbox && lightboxImages.length > 0) {
+			const showImage = (index) => {
+				if (index < 0) {
+					currentIndex = lightboxImages.length - 1;
+				} else if (index >= lightboxImages.length) {
+					currentIndex = 0;
+				} else {
+					currentIndex = index;
+				}
+				lightboxImg.src = lightboxImages[currentIndex].src;
+				lightboxImg.alt = lightboxImages[currentIndex].alt;
+			};
 
-        lightboxImages.forEach((img, idx) => {
-            img.addEventListener('click', () => {
-                showImage(idx);
-                lightbox.classList.add('show');
-                document.body.style.overflow = 'hidden'; 
-            });
-        });
+			lightboxImages.forEach((img, idx) => {
+				img.addEventListener('click', () => {
+					showImage(idx);
+					lightbox.classList.add('show');
+					document.body.style.overflow = 'hidden'; 
+				});
+			});
 
-        const closeLightbox = () => {
-            lightbox.classList.remove('show');
-            document.body.style.overflow = 'auto'; 
-        };
+			const closeLightbox = () => {
+				lightbox.classList.remove('show');
+				document.body.style.overflow = 'auto'; 
+			};
 
-        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-        
-        if (lightboxPrev) {
-            lightboxPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showImage(currentIndex - 1);
-            });
-        }
-        
-        if (lightboxNext) {
-            lightboxNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showImage(currentIndex + 1);
-            });
-        }
+			if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+			
+			if (lightboxPrev) {
+				lightboxPrev.addEventListener('click', (e) => {
+					e.stopPropagation();
+					showImage(currentIndex - 1);
+				});
+			}
+			
+			if (lightboxNext) {
+				lightboxNext.addEventListener('click', (e) => {
+					e.stopPropagation();
+					showImage(currentIndex + 1);
+				});
+			}
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
+			lightbox.addEventListener('click', (e) => {
+				if (e.target === lightbox) {
+					closeLightbox();
+				}
+			});
 
-        let touchStartX = 0;
-        let touchEndX = 0;
+			let touchStartX = 0;
+			let touchEndX = 0;
 
-        lightbox.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
+			lightbox.addEventListener('touchstart', (e) => {
+				touchStartX = e.changedTouches[0].screenX;
+			}, { passive: true });
 
-        lightbox.addEventListener('touchend', (e) => { 
-            touchEndX = e.changedTouches[0].screenX;
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                showImage(currentIndex + 1); 
-            }
-            if (touchEndX > touchStartX + swipeThreshold) {
-                showImage(currentIndex - 1); 
-            }
-        }, { passive: true });
+			lightbox.addEventListener('touchend', (e) => { 
+				touchEndX = e.changedTouches[0].screenX;
+				const swipeThreshold = 50;
+				if (touchEndX < touchStartX - swipeThreshold) {
+					showImage(currentIndex + 1); 
+				}
+				if (touchEndX > touchStartX + swipeThreshold) {
+					showImage(currentIndex - 1); 
+				}
+			}, { passive: true });
 
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('show')) return;
-            
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
-            if (e.key === 'ArrowRight') showImage(currentIndex + 1);
-        });
-    }
+			document.addEventListener('keydown', (e) => {
+				if (!lightbox.classList.contains('show')) return;
+				
+				if (e.key === 'Escape') closeLightbox();
+				if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+				if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+			});
+	}
 }
