@@ -785,3 +785,76 @@ body.real-estate-theme .selected-package-indicator {
         aspect-ratio: 16 / 10;
     }
 }
+/* ==========================================
+   FAQ SECTION STYLES
+   ========================================== */
+.faq-section {
+    padding: 100px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: left;
+    padding: 22px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: #d4af37;
+}
+
+.faq-icon {
+    font-size: 22px;
+    font-weight: 300;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+    color: #d4af37;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+    padding: 0 25px;
+    color: #b0b0b0;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px; /* Expands smoothly */
+    padding: 0 25px 25px 25px;
+}

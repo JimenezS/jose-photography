@@ -242,4 +242,20 @@ document.addEventListener("DOMContentLoaded", function() {
 				if (e.key === 'ArrowRight') showImage(currentIndex + 1);
 			});
 	}
+	// 8. Interactive FAQ Accordion Logic
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+        questionBtn.addEventListener('click', () => {
+            // Optional: Close other open FAQ items for a clean accordion effect
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            // Toggle active state on clicked item
+            item.classList.toggle('active');
+        });
+    });
 }
