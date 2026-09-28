@@ -289,4 +289,22 @@ document.addEventListener("DOMContentLoaded", function() {
             isDragging = false;
         });
     });
+	//10. FAQ Accordion Toggle Logic
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    if (faqItems.length > 0) {
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Optional: Close other open FAQs when clicking a new one
+                faqItems.forEach(otherItem => {
+					if (otherItem !== item) otherItem.classList.remove('active');
+                });
+
+                // Toggle current FAQ
+                item.classList.toggle('active');
+            });
+        });
+    }
 }

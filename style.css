@@ -801,77 +801,67 @@ body.real-estate-theme .selected-package-indicator {
     }
 }
 /* ==========================================
-   FAQ SECTION STYLES
+   FAQ ACCORDION STYLES
    ========================================== */
-.faq-section {
-    padding: 100px 20px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
 .faq-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .faq-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--surface);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
+    margin-bottom: 15px;
     overflow: hidden;
     transition: border-color 0.3s ease;
 }
 
 .faq-item:hover {
-    border-color: rgba(212, 175, 55, 0.4);
+    border-color: var(--accent);
 }
 
 .faq-question {
-    width: 100%;
-    background: none;
-    border: none;
-    color: #fff;
-    font-family: inherit;
-    font-size: 18px;
-    font-weight: 400;
-    text-align: left;
-    padding: 22px 25px;
-    cursor: pointer;
+    padding: 20px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: color 0.3s ease;
+    cursor: pointer;
+    user-select: none;
 }
 
-.faq-question:hover {
-    color: #d4af37;
+.faq-question h3 {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text);
+    margin: 0;
 }
 
 .faq-icon {
-    font-size: 22px;
-    font-weight: 300;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 20px;
+    color: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+/* Hidden state for the answer */
+.faq-answer {
+    max-height: 0;
+    padding: 0 25px;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+    color: var(--secondary);
+    font-size: 15px;
+}
+
+/* Active / Open state */
+.faq-item.active .faq-answer {
+    max-height: 300px; /* Adjust if your answers are very long */
+    padding: 0 25px 25px 25px;
 }
 
 .faq-item.active .faq-icon {
-    transform: rotate(45deg);
-    color: #d4af37;
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
-    padding: 0 25px;
-    color: #b0b0b0;
-    font-size: 15px;
-    line-height: 1.7;
-}
-
-.faq-item.active .faq-answer {
-    max-height: 200px; /* Expands smoothly */
-    padding: 0 25px 25px 25px;
+    transform: rotate(45deg); /* Turns the '+' into an 'x' */
 }
 /* ==========================================
    BEFORE & AFTER COMPARISON SLIDER STYLES
