@@ -37,7 +37,7 @@ header {
     text-align: center; 
     padding: 20px;
     position: relative;
-	overflow: hidden;	
+	overflow: hidden;
 }
 /* Expanded background layer to support higher parallax speeds without blank edges */
 .hero-bg, .divider-bg {
@@ -47,7 +47,6 @@ header {
     width: 100%;
     height: 200%; /* Increased from 140% to 200% for high-speed tracking */
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
     will-change: transform;
     z-index: 0;
@@ -55,13 +54,12 @@ header {
 
 .engagement-hero .hero-bg {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('img/engagements/9-DSC07675.jpg') center center / cover no-repeat fixed;
-	background-size: cover;
-    background-position: center 5%; /* Adjust this percentage (e.g., 20% or 30%) to frame the faces perfectly */
-    background-repeat: no-repeat;
+    background-position: center; /* Adjust this percentage (e.g., 20% or 30%) to frame the faces perfectly */
 }
 
 .realestate-hero .hero-bg {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('placeholder-re1.jpg') center center / cover no-repeat fixed; /* Swap with your best real estate shot */
+	background-position: center;
 }
 header h1, header p {
 	position: relative;
@@ -90,11 +88,13 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
 .divider-engagement-bg {
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
                 url('img/engagements/1-DSC01633.jpg') center center / cover no-repeat;
+	background-position: center 20%;			
 }
 
 .divider-realestate-bg {
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
                 url('placeholder-re2.jpg') center center / cover no-repeat;
+	 background-position: center 20%;
 }
 
 section { padding: 90px 20px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #eee; }
