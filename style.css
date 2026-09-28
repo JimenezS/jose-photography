@@ -1,13 +1,99 @@
 /* Import Google Fonts: Josefin Sans and Lato */
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Lato:wght@300;400;700&display=swap');
 
+/* ==========================================
+   GLOBAL THEME VARIABLES (System Dark/Light)
+   ================================---------- */
 :root {
+    /* Default Light Mode */
+    --bg: #fdfdfd;
+    --surface: #f4f4f4;
     --primary: #1a1a1a;
-    --secondary: #fdfdfd;
-    --accent: #888;
-    --text: #333;
+    --text: #333333;
+    --card-bg: #ffffff;
+    --accent: #d4e0d4;
     --pastel-green: #d4e0d4;
-    --green-hover: #c4d2c4;
+    --border-color: #eee;
+
+    /* Real Estate Warm & Wood Notes (Light Mode) */
+    --re-bg: #fbf9f6;         /* Warm Alabaster */
+    --re-surface: #f2ede4;    /* Soft Warm Linen */
+    --re-wood-dark: #3a2e26;  /* Rich Walnut */
+    --re-wood-warm: #b88656;  /* Amber Teak Accent */
+    --re-text: #2c2521;       /* Deep Espresso Text */
+}
+
+/* Automatic Device Dark Mode Detection */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #1a1a1a;
+        --surface: #242424;
+        --primary: #fdfdfd;
+        --text: #e0e0e0;
+        --card-bg: #222222;
+        --accent: #d4e0d4;
+        --pastel-green: #d4e0d4;
+        --border-color: #333333;
+
+        /* Real Estate Warm & Wood Notes (Dark Mode) */
+        --re-bg: #141210;         /* Deep Charcoal-Black */
+        --re-surface: #1e1a17;    /* Dark Espresso Surface */
+        --re-wood-dark: #f2ede4;  /* Light Warm Cream Contrast */
+        --re-wood-warm: #d49f6b;  /* Warm Honey Oak Accent */
+        --re-text: #f5f2ed;       /* Warm Off-White Text */
+    }
+}
+
+/* Apply Global Variables */
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav {
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pricing-card {
+    background: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--border-color);
+}
+
+/* ==========================================
+   REAL ESTATE PAGE: WARM WOOD THEME OVERRIDES
+   ================================---------- */
+body.real-estate-theme {
+    background-color: var(--re-bg);
+    color: var(--re-text);
+}
+
+body.real-estate-theme nav {
+    background-color: var(--re-bg);
+    border-bottom: 1px solid var(--re-surface);
+}
+
+body.real-estate-theme .pricing-card {
+    background: var(--re-surface);
+    border-color: rgba(184, 134, 86, 0.2);
+}
+
+body.real-estate-theme .pricing-card .price {
+    color: var(--re-wood-warm);
+}
+
+body.real-estate-theme .addon-container {
+    background: var(--re-surface);
+    border-color: rgba(184, 134, 86, 0.3);
+    color: var(--re-text);
+}
+
+body.real-estate-theme .selected-package-indicator {
+    background: var(--re-surface);
+    border-left-color: var(--re-wood-warm);
+    color: var(--re-wood-warm);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
