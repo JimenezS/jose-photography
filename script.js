@@ -221,38 +221,38 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (e.key === 'ArrowRight') showImage(currentIndex + 1);
 		});
 	}
-	// 7. Dynamic Carousel Auto-Populate from Image Folder
-	document.addEventListener("DOMContentLoaded", async () => {
+	// 7. Dynamic Carousel & Advanced Lightbox Integration
+	const carouselImages = [
+		"10-DSC07650.jpg",
+		"12-DSC07526.jpg",
+		"13-DSC07427.jpg",
+		"7-DSC07952.jpg",
+		"11-DSC07548.jpg",
+		"14-DSC07421.jpg"
+		// To add a new photo later, just drop the filename here: e.g., "new-photo.jpg"
+	];
+
+	document.addEventListener("DOMContentLoaded", () => {
 		const track = document.getElementById('dynamic-carousel-track');
 		if (!track) return;
 
-		try {
-			const response = await fetch('/api/get-carousel');
-			const images = await response.json();
+		// Build carousel cards dynamically from the array
+		carouselImages.forEach((filename, index) => {
+			const card = document.createElement('div');
+			card.className = 'carousel-card';
+			
+			const img = document.createElement('img');
+			img.src = `img/engagements/${filename}`;
+			img.alt = `Highlight ${index + 1}`;
+			
+			card.appendChild(img);
+			track.appendChild(card);
+		});
 
-			if (Array.isArray(images) && images.length > 0) {
-				images.forEach((filename, index) => {
-					const card = document.createElement('div');
-					card.className = 'carousel-card';
-					
-					const img = document.createElement('img');
-					// Adjust path prefix if your images are in img/engagements/
-					img.src = `img/engagements/${filename}`;
-					img.alt = `Highlight ${index + 1}`;
-					
-					card.appendChild(img);
-					track.appendChild(card);
-				});
-
-				// Re-initialize lightbox elements so newly generated images get click & swipe handlers
-				initializeLightbox();
-			}
-		} catch (error) {
-			console.error('Error loading dynamic carousel images:', error);
-		}
+		// Initialize Lightbox for both main gallery and carousel images
+		initializeLightbox();
 	});
 
-	// Wrap your lightbox code inside a reusable function called `initializeLightbox()`
 	function initializeLightbox() {
 		const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
 		const lightbox = document.getElementById('lightbox-modal');
@@ -274,7 +274,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			};
 
 			lightboxImages.forEach((img, idx) => {
-				// Prevent duplicate event listeners if called twice
 				img.onclick = () => {
 					showImage(idx);
 					lightbox.classList.add('show');
@@ -292,6 +291,24 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (lightboxNext) lightboxNext.onclick = (e) => { e.stopPropagation(); showImage(currentIndex + 1); };
 
 			lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
+
+			// Touch Swipe & Keyboard Navigation
+			let touchStartX = 0;
+			let touchEndX = 0;
+
+			lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+			lightbox.addEventListener('touchend', (e) => { 
+				touchEndX = e.changedTouches[0].screenX;
+				if (touchEndX < touchStartX - 50) showImage(currentIndex + 1);
+				if (touchEndX > touchStartX + 50) showImage(currentIndex - 1);
+			}, { passive: true });
+
+			document.addEventListener('keydown', (e) => {
+				if (!lightbox.classList.contains('show')) return;
+				if (e.key === 'Escape') closeLightbox();
+				if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+				if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+			});
 		}
 	}
 });

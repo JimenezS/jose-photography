@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "api/get-carousel.js": {
-      "includeFiles": "img/engagements/**"
-    }
-  }
-}
