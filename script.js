@@ -221,4 +221,77 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (e.key === 'ArrowRight') showImage(currentIndex + 1);
 		});
 	}
+	// 7. Dynamic Carousel Auto-Populate from Image Folder
+	document.addEventListener("DOMContentLoaded", async () => {
+		const track = document.getElementById('dynamic-carousel-track');
+		if (!track) return;
+
+		try {
+			const response = await fetch('/api/get-carousel');
+			const images = await response.json();
+
+			if (Array.isArray(images) && images.length > 0) {
+				images.forEach((filename, index) => {
+					const card = document.createElement('div');
+					card.className = 'carousel-card';
+					
+					const img = document.createElement('img');
+					// Adjust path prefix if your images are in img/engagements/
+					img.src = `img/engagements/${filename}`;
+					img.alt = `Highlight ${index + 1}`;
+					
+					card.appendChild(img);
+					track.appendChild(card);
+				});
+
+				// Re-initialize lightbox elements so newly generated images get click & swipe handlers
+				initializeLightbox();
+			}
+		} catch (error) {
+			console.error('Error loading dynamic carousel images:', error);
+		}
+	});
+
+	// Wrap your lightbox code inside a reusable function called `initializeLightbox()`
+	function initializeLightbox() {
+		const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
+		const lightbox = document.getElementById('lightbox-modal');
+		const lightboxImg = document.getElementById('lightbox-img');
+		const lightboxClose = document.querySelector('.lightbox-close');
+		const lightboxPrev = document.querySelector('.lightbox-prev');
+		const lightboxNext = document.querySelector('.lightbox-next');
+
+		let currentIndex = 0;
+
+		if (lightbox && lightboxImages.length > 0) {
+			const showImage = (index) => {
+				if (index < 0) currentIndex = lightboxImages.length - 1;
+				else if (index >= lightboxImages.length) currentIndex = 0;
+				else currentIndex = index;
+				
+				lightboxImg.src = lightboxImages[currentIndex].src;
+				lightboxImg.alt = lightboxImages[currentIndex].alt;
+			};
+
+			lightboxImages.forEach((img, idx) => {
+				// Prevent duplicate event listeners if called twice
+				img.onclick = () => {
+					showImage(idx);
+					lightbox.classList.add('show');
+					document.body.style.overflow = 'hidden';
+				};
+			});
+
+			const closeLightbox = () => {
+				lightbox.classList.remove('show');
+				document.body.style.overflow = 'auto';
+			};
+
+			if (lightboxClose) lightboxClose.onclick = closeLightbox;
+			if (lightboxPrev) lightboxPrev.onclick = (e) => { e.stopPropagation(); showImage(currentIndex - 1); };
+			if (lightboxNext) lightboxNext.onclick = (e) => { e.stopPropagation(); showImage(currentIndex + 1); };
+
+			lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
+		}
+	}
 });
