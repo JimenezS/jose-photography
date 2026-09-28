@@ -88,7 +88,7 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
 .divider-engagement-bg {
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
                 url('img/engagements/1-DSC01633.jpg') center center / cover no-repeat;
-	background-position: center 60%;			
+	background-position: center 5%;			
 }
 
 .divider-realestate-bg {
