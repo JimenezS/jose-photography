@@ -73,7 +73,7 @@ nav a { text-decoration: none; color: var(--primary); font-family: 'Josefin Sans
 nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(--pastel-green); }
 
 /* Mid-Page Parallax Divider Banners */
-/*.divider-banner {
+.divider-banner {
     height: 45vh;
     background-size: cover;
     background-position: center;
@@ -83,18 +83,9 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
     display: flex;
     align-items: center;
     justify-content: center;
-}*/
+}
 
 .divider-engagement {
-	height: 45vh; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    padding: 20px;
-    position: relative;
-	overflow: hidden;
     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('img/engagements/1-DSC01633.jpg');
 }
 
