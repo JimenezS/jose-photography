@@ -127,4 +127,43 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
+	// 6. Gallery Lightbox Modal Integration
+const galleryImages = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox-modal');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+if (lightbox && galleryImages.length > 0) {
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+    });
+
+    const closeLightbox = () => {
+        lightbox.classList.remove('show');
+        document.body.style.overflow = 'auto'; // Restore background scrolling
+    };
+
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
+    }
+
+    // Close when clicking anywhere outside the image background
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Close when pressing the Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+            closeLightbox();
+        }
+    });
+}
 });
