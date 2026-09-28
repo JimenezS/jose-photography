@@ -59,11 +59,11 @@
 
     <section id="pricing">
         <h2 class="reveal">Portrait Investment</h2>
-        <p class="section-desc reveal">Click a package below to instantly view live availability and book your session.</p>
+        <p class="section-desc reveal">Select a package below to open live availability and book your session.</p>
         <div class="pricing-grid">
             
             <!-- Package 1: Golden Hour Session -->
-            <div class="pricing-card reveal selected-card" data-package="The Golden Hour Session ($350)" data-cal-url="https://calendar.app.google/NS54JKwMURCj6ZmBA">
+            <div class="pricing-card reveal selected-card">
                 <h3>The Golden Hour Session</h3>
                 <div class="price">$350</div>
                 <ul>
@@ -73,11 +73,12 @@
                     <li>Styling and prompt-based posing guide</li>
                     <li>Printed Photo Album</li>
                 </ul>
-                <button class="cta-button" style="margin-top: 25px; width: 100%; padding: 12px; background: #d4af37; color: #111; font-weight: 600; border: none; border-radius: 4px; cursor: pointer;">Select & Book</button>
+                <!-- Opens Golden Hour Calendar in a new tab -->
+                <a href="https://calendar.app.google/NS54JKwMURCj6ZmBA" target="_blank" rel="noopener noreferrer" class="cta-button" style="display: block; margin-top: 25px; width: 100%; padding: 12px; background: #d4af37; color: #111; font-weight: 600; text-align: center; text-decoration: none; border-radius: 4px; transition: opacity 0.3s ease;">Select & Book</a>
             </div>
 
             <!-- Package 2: The Outdoor Session -->
-            <div class="pricing-card reveal" data-package="The Outdoor Session ($195)" data-cal-url="https://calendar.app.google/vf3s1ajphNz3xRdj9">
+            <div class="pricing-card reveal">
                 <h3>The Outdoor Session</h3>
                 <div class="price">$195</div>
                 <ul>
@@ -87,24 +88,10 @@
                     <li>Styling and prompt-based posing guide</li>
                     <li>Printed Photo Album for additional investment</li>
                 </ul>
-                <button class="cta-button" style="margin-top: 25px; width: 100%; padding: 12px; background: rgba(255,255,255,0.08); color: #fff; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; cursor: pointer;">Select & Book</button>
+                <!-- Opens Outdoor Session Calendar in a new tab -->
+                <a href="https://calendar.app.google/vf3s1ajphNz3xRdj9" target="_blank" rel="noopener noreferrer" class="cta-button" style="display: block; margin-top: 25px; width: 100%; padding: 12px; background: rgba(255,255,255,0.08); color: #fff; font-weight: 600; text-align: center; text-decoration: none; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); transition: background 0.3s ease;">Select & Book</a>
             </div>
 
-        </div>
-    </section>
-	<!-- Direct Calendar Scheduling Section -->
-    <section id="book-session" class="booking-section">
-        <h2 class="reveal" style="text-align: center; margin-bottom: 15px;">Reserve Your Session</h2>
-        <p class="section-desc reveal" style="text-align: center; margin-bottom: 40px;" id="selected-service-title">Select a package above to load its live availability calendar.</p>
-        
-        <div class="booking-container reveal">
-            <iframe 
-                id="booking-iframe"
-                src="" 
-                style="border: 0; width: 100%; height: 650px; background: 1f1f1f; border-radius: 6px;" 
-                frameborder="0" 
-                scrolling="no">
-            </iframe>
         </div>
     </section>
 	<!-- Frequently Asked Questions Section -->
