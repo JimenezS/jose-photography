@@ -596,3 +596,8 @@ body.real-estate-theme .selected-package-indicator {
         height: 400px;
     }
 }
+/* Highlight the Client Access nav item */
+.client-portal-link {
+    color: var(--re-wood-warm, var(--primary)) !important;
+    font-weight: 700 !important;
+}
