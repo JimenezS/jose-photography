@@ -139,11 +139,7 @@ header {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('placeholder-re1.jpg') center center / cover no-repeat fixed;
     background-position: center;
 }
-/* Highlight the Client Access nav item */
-.client-portal-link {
-    color: var(--re-wood-warm, var(--primary)) !important;
-    font-weight: 700 !important;
-}
+
 header h1, header p, .hero-content {
     position: relative;
     z-index: 1;
@@ -176,7 +172,11 @@ header p {
     margin-bottom: 12px;
     filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.4));
 }
-
+/* Highlight the Client Access nav item */
+.client-portal-link {
+    color: var(--re-wood-warm, var(--primary)) !important;
+    font-weight: 700 !important;
+}
 /* Mid-Page Parallax Divider Banners */
 .divider-banner {
     height: 45vh;
