@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(el);
     });
 
-    // 2. Smooth Sub-Parallax Effect
+    // 2. Smooth Center-Referenced Sub-Parallax Effect
     const parallaxBgs = document.querySelectorAll('.hero-bg, .divider-bg');
     
     function updateParallax() {
@@ -33,12 +33,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     if (parallaxBgs.length > 0) {
-        // Run immediately on page load to eliminate the first-scroll snap
         updateParallax();
-        
-        // Run smoothly during scroll using requestAnimationFrame
         window.addEventListener('scroll', () => {
             requestAnimationFrame(updateParallax);
         }, { passive: true });
+    }
+
+    // 3. Modern Carousel Navigation Logic
+    const track = document.querySelector('.carousel-track');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+
+    if (track && prevBtn && nextBtn) {
+        const scrollAmount = 430; // Card width (400px) + gap (30px)
+
+        nextBtn.addEventListener('click', () => {
+            track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
     }
 });
