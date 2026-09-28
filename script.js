@@ -130,7 +130,10 @@ document.addEventListener("DOMContentLoaded", function() {
         "13-DSC07427.jpg",
         "7-DSC07952.jpg",
         "11-DSC07548.jpg",
-        "14-DSC07421.jpg"
+        "14-DSC07421.jpg",
+		"1-DSC01633.jpg",
+		"3-DSC01614,jpg",
+		"9-DSC07675.jpg",
         // To add a new photo later, just add its filename here!
     ];
 
