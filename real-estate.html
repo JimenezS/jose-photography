@@ -42,8 +42,9 @@
 
     <section id="pricing">
         <h2 class="reveal">Real Estate Investment</h2>
+        <p class="section-desc reveal">Click the package below to select it for your listing inquiry.</p>
         <div class="pricing-grid">
-            <div class="pricing-card reveal">
+            <div class="pricing-card reveal selected-card" data-package="Standard MLS Listing ($250)">
                 <h3>Standard MLS Listing</h3>
                 <div class="price">$250</div>
                 <ul>
@@ -60,10 +61,15 @@
     <section id="contact">
         <h2>Book a Listing Shoot</h2>
         <form class="reveal" id="contact-form">
+            <!-- Live feedback indicator -->
+            <div class="selected-package-indicator" id="package-display">Selected Package: Standard MLS Listing ($250)</div>
+            
+            <!-- Hidden input -->
+            <input type="hidden" name="selected_package" id="selected-package-input" value="Standard MLS Listing ($250)">
+            
             <input type="text" name="name" placeholder="Your Name / Realtor" required>
             <input type="email" name="email" placeholder="Your Email Address" required>
-			<input type="tel" placeholder="Your Phone Number" required>
-            <input type="hidden" name="service" value="Real Estate Listing">
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
             <textarea name="message" rows="5" placeholder="Property address, square footage, and preferred shoot date..." required></textarea>
             <button type="submit">Submit Listing Inquiry</button>
         </form>
