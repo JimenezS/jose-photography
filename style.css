@@ -131,7 +131,7 @@ header {
     margin-bottom: 15px;
     font-weight: 300;
     font-size: 20px;
-    color: var(--re-wood-warm); /* Automatically switches based on active theme! */
+    color: var(--re-text); /* Automatically switches based on active theme! */
 }
 .hero-bg, .divider-bg {
     position: absolute;
