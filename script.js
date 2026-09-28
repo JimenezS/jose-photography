@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const parentRect = bg.parentElement.getBoundingClientRect();
                 // Check if the parent banner is currently near or inside the viewport
                 if (parentRect.top < window.innerHeight && parentRect.bottom > 0) {
-                    const offset = (window.innerHeight - parentRect.top) * 0.8;
+                    const offset = (window.innerHeight - parentRect.top) * 0.25;
                     bg.style.transform = `translateY(${offset}px)`;
                 }
             });
