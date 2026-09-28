@@ -61,7 +61,7 @@ body {
     font-family: 'Lato', sans-serif; 
     font-weight: 400;
     color: var(--text); 
-    background: var(--bg); 
+    background-color: var(--bg); 
     line-height: 1.7; 
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
