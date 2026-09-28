@@ -126,7 +126,13 @@ header {
     position: relative;
     overflow: hidden;
 }
-
+.comparison-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 300;
+    font-size: 20px;
+    color: var(--re-wood-warm); /* Automatically switches based on active theme! */
+}
 .hero-bg, .divider-bg {
     position: absolute;
     top: -50%;
