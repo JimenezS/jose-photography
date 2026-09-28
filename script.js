@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const realEstateImages = [
-        "1.png", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"
+        "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"
     ];
 
     const engagementTrack = document.getElementById('dynamic-carousel-track');
