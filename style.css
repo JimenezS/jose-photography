@@ -36,18 +36,32 @@ header {
     align-items: center; 
     text-align: center; 
     padding: 20px;
-    background-size: cover;
-    background-position: center; 
+    position: relative;
+	overflow: hidden;	
+}
+.hero-bg {
+	position: absolute;
+	top: -20%;
+	left: 0;
+	width: 100%;
+	height: 140%;
+	background-size: cover;
+	background-position: center;
 	background-repeat: no-repeat;
-    background-attachment: fixed; 
+	will-change: transform;
+	z-index: 0;
 }
 
-.engagement-hero {
+.engagement-hero .hero-bg {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('img/engagements/9-DSC07675.jpg') center center / cover no-repeat fixed;
 }
 
-.realestate-hero {
+.realestate-hero .hero-bg {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('placeholder-re1.jpg') center center / cover no-repeat fixed; /* Swap with your best real estate shot */
+}
+header h1, header p {
+	position: relative;
+	z-index: 1;
 }
 
 header h1 { font-size: 4.5rem; letter-spacing: 6px; text-transform: uppercase; color: #fff; text-shadow: 0 4px 15px rgba(0,0,0,0.4); }
