@@ -257,6 +257,32 @@ footer { text-align: center; padding: 50px; color: var(--accent); font-size: 0.9
     border-left: 3px solid var(--pastel-green);
     border-radius: 2px;
 }
+/* Printed Album Add-on Box */
+.addon-container {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    padding: 16px 20px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.addon-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.addon-container label {
+    cursor: pointer;
+    font-weight: 400;
+}
 /* Apple-style Smooth Scroll Reveal Classes (Only active when JS is running) */
 body.js-loaded .reveal {
     opacity: 0;

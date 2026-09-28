@@ -89,10 +89,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-	// 5. Interactive Pricing Card Selection & Auto-Scroll
+	// 5. Interactive Pricing Card Selection & Auto-Scroll with Dynamic Add-on Toggle
     const pricingCards = document.querySelectorAll('.pricing-card');
     const packageInput = document.getElementById('selected-package-input');
     const packageDisplay = document.getElementById('package-display');
+    const albumAddon = document.getElementById('album-addon');
+    const albumCheckbox = document.getElementById('album-checkbox');
 
     if (pricingCards.length > 0 && packageInput) {
         pricingCards.forEach(card => {
@@ -101,13 +103,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 pricingCards.forEach(c => c.classList.remove('selected-card'));
                 card.classList.add('selected-card');
 
-                // Extract package title and price from data attribute
+                // Extract package name from data attribute
                 const packageName = card.getAttribute('data-package');
 
-                // Silently update the hidden form input and visual indicator text
+                // Update hidden input and live text indicator
                 packageInput.value = packageName;
                 if (packageDisplay) {
                     packageDisplay.innerText = `Selected Package: ${packageName}`;
+                }
+
+                // Show add-on option ONLY if the $195 package is selected
+                if (packageName.includes('$195')) {
+                    if (albumAddon) albumAddon.style.display = 'flex';
+                } else {
+                    if (albumAddon) {
+                        albumAddon.style.display = 'none';
+                        if (albumCheckbox) albumCheckbox.checked = false; // Reset checkbox if hidden
+                    }
                 }
 
                 // Smoothly glide down to the contact form

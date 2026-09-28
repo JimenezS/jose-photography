@@ -94,6 +94,12 @@
             <!-- Hidden input passing the selected package to your form handler -->
             <input type="hidden" name="selected_package" id="selected-package-input" value="The Golden Hour Session ($350)">
             
+            <!-- Conditionally shown Add-on option for the $195 package -->
+            <div class="addon-container" id="album-addon" style="display: none;">
+                <input type="checkbox" name="add_printed_album" id="album-checkbox" value="Yes - Add Printed Album for $50">
+                <label for="album-checkbox">Add a Printed Photo Album $50</label>
+            </div>
+            
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email Address" required>
             <input type="tel" name="phone" placeholder="Your Phone Number" required>
