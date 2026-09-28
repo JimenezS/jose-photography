@@ -85,11 +85,11 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
     justify-content: center;
 }
 
-.divider-engagement {
+.divider-engagement .hero-bg {
     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('img/engagements/1-DSC01633.jpg');
 }
 
-.divider-realestate {
+.divider-realestate .hero-bg {
     background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('placeholder-re2.jpg');
 }
 
