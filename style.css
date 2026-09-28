@@ -984,8 +984,32 @@ body.real-estate-theme .selected-package-indicator {
     text-transform: uppercase;
 }
 /* ==========================================
-   GOOGLE CALENDAR EMBED STYLES
+   PRICING & BOOKING CONTAINER STYLES
    ========================================== */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.pricing-card:hover, .pricing-card.selected-card {
+    border-color: #d4af37;
+    transform: translateY(-4px);
+}
+
 .booking-section {
     padding: 90px 20px;
     max-width: 900px;
@@ -1001,6 +1025,8 @@ body.real-estate-theme .selected-package-indicator {
     overflow: hidden;
 }
 
-.booking-container iframe {
-    border-radius: 4px;
+.contact-section {
+    padding: 90px 20px;
+    max-width: 700px;
+    margin: 0 auto;
 }

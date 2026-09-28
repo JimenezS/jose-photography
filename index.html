@@ -59,9 +59,11 @@
 
     <section id="pricing">
         <h2 class="reveal">Portrait Investment</h2>
-        <p class="section-desc reveal">Click a package below to instantly select it for your inquiry.</p>
+        <p class="section-desc reveal">Click a package below to instantly view live availability and book your session.</p>
         <div class="pricing-grid">
-            <div class="pricing-card reveal selected-card" data-package="The Golden Hour Session ($350)">
+            
+            <!-- Package 1: Golden Hour Session -->
+            <div class="pricing-card reveal selected-card" data-package="The Golden Hour Session ($350)" data-cal-url="https://calendar.app.google/NS54JKwMURCj6ZmBA">
                 <h3>The Golden Hour Session</h3>
                 <div class="price">$350</div>
                 <ul>
@@ -71,8 +73,11 @@
                     <li>Styling and prompt-based posing guide</li>
                     <li>Printed Photo Album</li>
                 </ul>
+                <button class="cta-button" style="margin-top: 25px; width: 100%; padding: 12px; background: #d4af37; color: #111; font-weight: 600; border: none; border-radius: 4px; cursor: pointer;">Select & Book</button>
             </div>
-            <div class="pricing-card reveal" data-package="The Outdoor Session ($195)">
+
+            <!-- Package 2: The Outdoor Session -->
+            <div class="pricing-card reveal" data-package="The Outdoor Session ($195)" data-cal-url="https://calendar.app.google/vf3s1ajphNz3xRdj9">
                 <h3>The Outdoor Session</h3>
                 <div class="price">$195</div>
                 <ul>
@@ -82,7 +87,24 @@
                     <li>Styling and prompt-based posing guide</li>
                     <li>Printed Photo Album for additional investment</li>
                 </ul>
+                <button class="cta-button" style="margin-top: 25px; width: 100%; padding: 12px; background: rgba(255,255,255,0.08); color: #fff; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; cursor: pointer;">Select & Book</button>
             </div>
+
+        </div>
+    </section>
+	<!-- Direct Calendar Scheduling Section -->
+    <section id="book-session" class="booking-section">
+        <h2 class="reveal" style="text-align: center; margin-bottom: 15px;">Reserve Your Session</h2>
+        <p class="section-desc reveal" style="text-align: center; margin-bottom: 40px;" id="selected-service-title">Select a package above to load its live availability calendar.</p>
+        
+        <div class="booking-container reveal">
+            <iframe 
+                id="booking-iframe"
+                src="" 
+                style="border: 0; width: 100%; height: 650px; background: transparent;" 
+                frameborder="0" 
+                scrolling="yes">
+            </iframe>
         </div>
     </section>
 	<!-- Frequently Asked Questions Section -->
@@ -132,42 +154,26 @@
             </div>
         </div>
     </section>
-    <section id="contact">
-        <h2>Book an Engagement Session</h2>
-        <form class="reveal" id="contact-form">
-            <!-- Live feedback indicator showing what package is queued -->
-            <div class="selected-package-indicator" id="package-display">Selected Package: The Golden Hour Session ($350)</div>
-            
-            <!-- Hidden input passing the selected package to your form handler -->
-            <input type="hidden" name="selected_package" id="selected-package-input" value="The Golden Hour Session ($350)">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email Address" required>
-            <input type="tel" name="phone" placeholder="Your Phone Number" required>
-			
-			<!-- Conditionally shown Add-on option for the $195 package -->
-            <div class="addon-container" id="album-addon" style="display: none;">
-                <input type="checkbox" name="add_printed_album" id="album-checkbox" value="Yes - Add Printed Album for $50">
-                <label for="album-checkbox">Add a Printed Photo Album $50</label>
-            </div>
-			
-            <textarea name="message" rows="5" placeholder="Tell me about your vision or desired location..." required></textarea>
-            <button type="submit">Submit Inquiry</button>
-        </form>
-    </section>
-	<!-- Direct Calendar Scheduling Section (Google Calendar) -->
-    <section id="book-session" class="booking-section">
-        <h2 class="reveal" style="text-align: center; margin-bottom: 15px;">Reserve Your Session</h2>
-        <p class="section-desc reveal" style="text-align: center; margin-bottom: 40px;">Select an available date and time below. Schedule is synchronized live with my availability window.</p>
+    <!-- General Inquiries & Custom Quotes Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="reveal" style="text-align: center; margin-bottom: 15px;">General Inquiries & Custom Quotes</h2>
+        <p class="section-desc reveal" style="text-align: center; margin-bottom: 40px;">Have a custom request, multi-property real estate shoot, or general question? Send a message below.</p>
         
-        <div class="booking-container reveal">
-            <!-- Google Calendar Appointment Schedule Embedded Widget -->
-            <iframe 
-                src="https://calendar.app.google/NS54JKwMURCj6ZmBA" 
-                style="border: 0; width: 100%; height: 650px; background: transparent;" 
-                frameborder="0" 
-                scrolling="yes">
-            </iframe>
-        </div>
+        <form id="contact-form" class="reveal">
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="name" style="display: block; margin-bottom: 8px; color: #ccc;">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Your Name" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;">
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="email" style="display: block; margin-bottom: 8px; color: #ccc;">Email</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;">
+            </div>
+            <div class="form-group" style="margin-bottom: 25px;">
+                <label for="message" style="display: block; margin-bottom: 8px; color: #ccc;">Message / Details</label>
+                <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or inquiry..." style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;"></textarea>
+            </div>
+            <button type="submit" class="cta-button submit-btn" style="width: 100%; padding: 14px; background: #d4af37; color: #111; font-weight: 600; border: none; border-radius: 4px; cursor: pointer;">Send Message</button>
+        </form>
     </section>
 	<!-- Client Testimonials Section -->
     <section class="testimonials-section">

@@ -89,36 +89,31 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // 5. Interactive Pricing Card Selection & Auto-Scroll with Dynamic Add-on Toggle
+    // 5. Interactive Pricing Card Selection & Dynamic Calendar Swapper
     const pricingCards = document.querySelectorAll('.pricing-card');
-    const packageInput = document.getElementById('selected-package-input');
-    const packageDisplay = document.getElementById('package-display');
-    const albumAddon = document.getElementById('album-addon');
-    const albumCheckbox = document.getElementById('album-checkbox');
+    const bookingIframe = document.getElementById('booking-iframe');
+    const serviceTitle = document.getElementById('selected-service-title');
 
-    if (pricingCards.length > 0 && packageInput) {
+    if (pricingCards.length > 0) {
         pricingCards.forEach(card => {
             card.addEventListener('click', () => {
                 pricingCards.forEach(c => c.classList.remove('selected-card'));
                 card.classList.add('selected-card');
 
                 const packageName = card.getAttribute('data-package');
+                const calendarUrl = card.getAttribute('data-cal-url');
 
-                packageInput.value = packageName;
-                if (packageDisplay) {
-                    packageDisplay.innerText = `Selected Package: ${packageName}`;
+                // Dynamically load the correct Google Calendar schedule into the iframe
+                if (bookingIframe && calendarUrl) {
+                    bookingIframe.src = calendarUrl;
                 }
 
-                if (packageName.includes('$195')) {
-                    if (albumAddon) albumAddon.style.display = 'flex';
-                } else {
-                    if (albumAddon) {
-                        albumAddon.style.display = 'none';
-                        if (albumCheckbox) albumCheckbox.checked = false; 
-                    }
+                if (serviceTitle) {
+                    serviceTitle.innerText = `Showing live availability for: ${packageName}`;
                 }
 
-                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                // Smoothly glide down to the booking calendar section
+                document.getElementById('book-session').scrollIntoView({ behavior: 'smooth' });
             });
         });
     }
