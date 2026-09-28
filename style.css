@@ -227,7 +227,36 @@ footer { text-align: center; padding: 50px; color: var(--accent); font-size: 0.9
     transform: translateY(0);
     opacity: 1;
 }
+/* Interactive Pricing Cards */
+.pricing-card {
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                border-color 0.3s ease;
+}
 
+.pricing-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Active Selected State */
+.pricing-card.selected-card {
+    border-color: var(--primary);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Live Selected Package Indicator in Form */
+.selected-package-indicator {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-style: italic;
+    background: #fafafa;
+    padding: 12px 18px;
+    border-left: 3px solid var(--pastel-green);
+    border-radius: 2px;
+}
 /* Apple-style Smooth Scroll Reveal Classes (Only active when JS is running) */
 body.js-loaded .reveal {
     opacity: 0;

@@ -58,8 +58,9 @@
 
     <section id="pricing">
         <h2 class="reveal">Portrait Investment</h2>
+        <p class="section-desc reveal">Click a package below to instantly select it for your inquiry.</p>
         <div class="pricing-grid">
-            <div class="pricing-card reveal">
+            <div class="pricing-card reveal selected-card" data-package="The Golden Hour Session ($350)">
                 <h3>The Golden Hour Session</h3>
                 <div class="price">$350</div>
                 <ul>
@@ -70,7 +71,7 @@
                     <li>Printed Photo Album</li>
                 </ul>
             </div>
-			<div class="pricing-card reveal">
+            <div class="pricing-card reveal" data-package="The Outdoor Session ($195)">
                 <h3>The Outdoor Session</h3>
                 <div class="price">$195</div>
                 <ul>
@@ -87,10 +88,15 @@
     <section id="contact">
         <h2>Book an Engagement Session</h2>
         <form class="reveal" id="contact-form">
+            <!-- Live feedback indicator showing what package is queued -->
+            <div class="selected-package-indicator" id="package-display">Selected Package: The Golden Hour Session ($350)</div>
+            
+            <!-- Hidden input passing the selected package to your form handler -->
+            <input type="hidden" name="selected_package" id="selected-package-input" value="The Golden Hour Session ($350)">
+            
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email Address" required>
-			<input type="tel" placeholder="Your Phone Number" required>
-            <input type="hidden" name="service" value="Engagement Session">
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
             <textarea name="message" rows="5" placeholder="Tell me about your vision or desired location..." required></textarea>
             <button type="submit">Submit Inquiry</button>
         </form>

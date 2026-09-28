@@ -89,4 +89,30 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+	// 5. Interactive Pricing Card Selection & Auto-Scroll
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    const packageInput = document.getElementById('selected-package-input');
+    const packageDisplay = document.getElementById('package-display');
+
+    if (pricingCards.length > 0 && packageInput) {
+        pricingCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove active class from all cards, add to clicked one
+                pricingCards.forEach(c => c.classList.remove('selected-card'));
+                card.classList.add('selected-card');
+
+                // Extract package title and price from data attribute
+                const packageName = card.getAttribute('data-package');
+
+                // Silently update the hidden form input and visual indicator text
+                packageInput.value = packageName;
+                if (packageDisplay) {
+                    packageDisplay.innerText = `Selected Package: ${packageName}`;
+                }
+
+                // Smoothly glide down to the contact form
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    }
 });
