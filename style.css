@@ -38,6 +38,7 @@ header {
     padding: 20px;
     background-size: cover;
     background-position: center; 
+	background-repeat: no-repeat;
     background-attachment: fixed; 
 }
 
@@ -62,6 +63,7 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
     height: 45vh;
     background-size: cover;
     background-position: center;
+	background-repeat: no-repeat;
     background-attachment: fixed;
     margin: 60px 0;
     display: flex;
@@ -70,7 +72,7 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
 }
 
 .divider-engagement {
-    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('img/engagements/11-DSC07548.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('img/engagements/1-DSC01633.jpg');
 }
 
 .divider-realestate {
