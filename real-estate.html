@@ -27,16 +27,27 @@
         <a href="#contact">Contact</a>
     </nav>
 
-    <section id="real-estate">
-        <h2 class="reveal">Property Portfolio</h2>
-        <p class="section-desc reveal">Crisp, bright, and meticulously composed imagery designed to make your South Florida listings stand out on the MLS. Shot with highly accurate color science and perfectly straightened verticals.</p>
+   <section id="real-estate">
+        <h2 class="reveal">Architectural & Real Estate</h2>
+        <p class="section-desc reveal">Crisp, distortion-free interior and exterior photography designed to showcase spatial flow, natural lighting, and high-end property features.</p>
         <div class="gallery">
-            <img src="placeholder-re1.jpg" alt="Living Room Wide" class="reveal">
-            <img src="placeholder-re2.jpg" alt="Kitchen Detail" class="reveal">
-            <img src="placeholder-re3.jpg" alt="Bathroom Vertical" class="reveal">
-            <img src="placeholder-re4.jpg" alt="Bedroom Bright" class="reveal">
-            <img src="placeholder-re5.jpg" alt="Exterior Front" class="reveal">
-            <img src="placeholder-re6.jpg" alt="Outdoor Living Space" class="reveal">
+            <img src="img/real-estate/1.jpg" alt="Luxury modern living room interior">
+            <img src="img/real-estate/2.jpg" alt="Bright open-concept kitchen">
+            <img src="img/real-estate/3.jpg" alt="Modern exterior architectural view">
+            <img src="img/real-estate/4.jpg" alt="Master bedroom suite natural light">
+            <img src="img/real-estate/5.jpg" alt="Luxury bathroom vanity detail">
+            <img src="img/real-estate/6.jpg" alt="Dusk twilight exterior shot">
+        </div>
+    </section>
+	<!-- Real Estate Carousel Section -->
+    <section class="carousel-section">
+        <h2 class="reveal" style="text-align: center; margin-bottom: 40px;">Property Highlights</h2>
+        <div class="carousel-container reveal">
+            <button class="carousel-btn prev">&#10094;</button>
+            <div class="carousel-track" id="dynamic-real-estate-carousel-track">
+                <!-- Populated automatically by JavaScript -->
+            </div>
+            <button class="carousel-btn next">&#10095;</button>
         </div>
     </section>
 
@@ -83,6 +94,12 @@
     <footer>
         <p>&copy; 2026 Jose Jimenez Photography. Miami, FL.</p>
     </footer>
-
+	<!-- Lightbox Modal for Full-Size Image Viewing with Navigation -->
+	<div id="lightbox-modal" class="lightbox">
+		<span class="lightbox-close">&times;</span>
+		<button class="lightbox-nav lightbox-prev">&#10094;</button>
+		<img class="lightbox-content" id="lightbox-img" alt="Enlarged View">
+		<button class="lightbox-nav lightbox-next">&#10095;</button>
+	</div>
 </body>
 </html>

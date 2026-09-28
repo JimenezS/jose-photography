@@ -136,27 +136,37 @@ document.addEventListener("DOMContentLoaded", function() {
 		"9-DSC07675.jpg",
         // To add a new photo later, just add its filename here!
     ];
+	const realEstateImages = [
+        "1.png", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"
+        // Add your real estate highlight filenames here as you get them!
+    ];
 
-    const dynamicTrack = document.getElementById('dynamic-carousel-track');
-    if (dynamicTrack) {
-        carouselImages.forEach((filename, index) => {
+    // Populate Engagement Carousel if track exists
+    const engagementTrack = document.getElementById('dynamic-carousel-track');
+    if (engagementTrack) {
+        engagementImages.forEach((filename, index) => {
             const card = document.createElement('div');
             card.className = 'carousel-card';
-            
-            const img = document.createElement('img');
-            img.src = `img/engagements/${filename}`;
-            img.alt = `Highlight ${index + 1}`;
-            
-            card.appendChild(img);
-            dynamicTrack.appendChild(card);
+            card.innerHTML = `<img src="img/engagements/${filename}" alt="Engagement Highlight ${index + 1}">`;
+            engagementTrack.appendChild(card);
         });
     }
 
-    // 7. Advanced Gallery & Carousel Lightbox Initialization
+    // Populate Real Estate Carousel if track exists
+    const realEstateTrack = document.getElementById('dynamic-real-estate-carousel-track');
+    if (realEstateTrack) {
+        realEstateImages.forEach((filename, index) => {
+            const card = document.createElement('div');
+            card.className = 'carousel-card';
+            card.innerHTML = `<img src="img/real-estate/${filename}" alt="Real Estate Highlight ${index + 1}">`;
+            realEstateTrack.appendChild(card);
+        });
+    }
+
+    // 7. Advanced Gallery & Lightbox Initialization for whichever page is active
     initializeLightbox();
 });
 
-// Lightbox Logic Helper Function
 function initializeLightbox() {
     const lightboxImages = document.querySelectorAll('.gallery img, .carousel-card img');
     const lightbox = document.getElementById('lightbox-modal');
@@ -181,11 +191,11 @@ function initializeLightbox() {
         };
 
         lightboxImages.forEach((img, idx) => {
-            img.addEventListener('click', () => {
+            img.onclick = () => {
                 showImage(idx);
                 lightbox.classList.add('show');
                 document.body.style.overflow = 'hidden'; 
-            });
+            };
         });
 
         const closeLightbox = () => {
@@ -193,52 +203,28 @@ function initializeLightbox() {
             document.body.style.overflow = 'auto'; 
         };
 
-        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-        
-        if (lightboxPrev) {
-            lightboxPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showImage(currentIndex - 1);
-            });
-        }
-        
-        if (lightboxNext) {
-            lightboxNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showImage(currentIndex + 1);
-            });
-        }
+        if (lightboxClose) lightboxClose.onclick = closeLightbox;
+        if (lightboxPrev) lightboxPrev.onclick = (e) => { e.stopPropagation(); showImage(currentIndex - 1); };
+        if (lightboxNext) lightboxNext.onclick = (e) => { e.stopPropagation(); showImage(currentIndex + 1); };
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
+        lightbox.onclick = (e) => { if (e.target === lightbox) closeLightbox(); };
 
         let touchStartX = 0;
         let touchEndX = 0;
 
-        lightbox.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
+        lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
         lightbox.addEventListener('touchend', (e) => { 
             touchEndX = e.changedTouches[0].screenX;
-            const swipeThreshold = 50;
-            if (touchEndX < touchStartX - swipeThreshold) {
-                showImage(currentIndex + 1); 
-            }
-            if (touchEndX > touchStartX + swipeThreshold) {
-                showImage(currentIndex - 1); 
-            }
+            if (touchEndX < touchStartX - 50) showImage(currentIndex + 1); 
+            if (touchEndX > touchStartX + 50) showImage(currentIndex - 1); 
         }, { passive: true });
 
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('show')) return;
-            
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
             if (e.key === 'ArrowRight') showImage(currentIndex + 1);
         });
     }
+}
 }
