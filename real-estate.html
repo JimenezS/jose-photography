@@ -59,10 +59,12 @@
 
     <section id="contact">
         <h2>Book a Listing Shoot</h2>
-        <form class="reveal">
-            <input type="text" placeholder="Your Name / Realtor" required>
-            <input type="email" placeholder="Your Email Address" required>
-            <textarea rows="5" placeholder="Property address, square footage, and preferred shoot date..." required></textarea>
+        <form class="reveal" id="contact-form">
+            <input type="text" name="name" placeholder="Your Name / Realtor" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
+			<input type="tel" placeholder="Your Phone Number" required>
+            <input type="hidden" name="service" value="Real Estate Listing">
+            <textarea name="message" rows="5" placeholder="Property address, square footage, and preferred shoot date..." required></textarea>
             <button type="submit">Submit Listing Inquiry</button>
         </form>
     </section>

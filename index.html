@@ -86,16 +86,15 @@
 
     <section id="contact">
         <h2>Book an Engagement Session</h2>
-        <form class="reveal">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email Address" required>
+        <form class="reveal" id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email Address" required>
 			<input type="tel" placeholder="Your Phone Number" required>
-            <input type="hidden" value="engagement">
-            <textarea rows="5" placeholder="Tell me about your vision or desired location..." required></textarea>
+            <input type="hidden" name="service" value="Engagement Session">
+            <textarea name="message" rows="5" placeholder="Tell me about your vision or desired location..." required></textarea>
             <button type="submit">Submit Inquiry</button>
         </form>
     </section>
-
     <footer>
         <p>&copy; 2026 Jose Jimenez Photography. Miami, FL.</p>
     </footer>
