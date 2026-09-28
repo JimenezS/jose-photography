@@ -111,7 +111,7 @@ nav a {
 
 nav a:hover, nav a.active { 
     color: var(--accent); 
-    border-bottom: 2px solid var(--pastel-green); 
+    border-bottom: 2px solid var(--accent); 
 }
 
 /* Main Hero Banner Parallax */
