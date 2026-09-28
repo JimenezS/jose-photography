@@ -96,19 +96,37 @@
 
     <section id="pricing">
         <h2 class="reveal">Real Estate Investment</h2>
-        <p class="section-desc reveal">Click the package below to select it for your listing inquiry.</p>
+        <p class="section-desc reveal">Select a package below to open live availability and book your architectural session.</p>
         <div class="pricing-grid">
-            <div class="pricing-card reveal selected-card" data-package="Standard MLS Listing ($250)">
-                <h3>Standard MLS Listing</h3>
+            
+            <!-- Package 1: Essential Listing Package -->
+            <div class="pricing-card reveal selected-card">
+                <h3>Essential Listing Package</h3>
                 <div class="price">$250</div>
                 <ul>
-                    <li>Homes 1,500 – 3,000 sq ft</li>
-                    <li>25–40 high-res edited photos</li>
-                    <li>Advanced vertical correction</li>
-                    <li>Ambient window light balancing</li>
-                    <li>Guaranteed 24-48 hour turnaround</li>
+                    <li>High-resolution interior & exterior coverage</li>
+                    <li>Advanced HDR blending & color correction</li>
+                    <li>Vertical perspective correction</li>
+                    <li>Next-day MLS delivery</li>
                 </ul>
+                <!-- Opens Real Estate Essential Calendar in a new tab -->
+                <a href="YOUR_REAL_ESTATE_CALENDAR_URL_HERE" target="_blank" rel="noopener noreferrer" class="cta-button" style="display: block; margin-top: 25px; width: 100%; padding: 12px; background: #d4af37; color: #111; font-weight: 600; text-align: center; text-decoration: none; border-radius: 4px; transition: opacity 0.3s ease;">Select & Book</a>
             </div>
+
+            <!-- Package 2: Luxury & Twilight Package -->
+            <div class="pricing-card reveal">
+                <h3>Luxury & Twilight Package</h3>
+                <div class="price">$400</div>
+                <ul>
+                    <li>Comprehensive interior, exterior, & detail shots</li>
+                    <li>Dusk / twilight exterior conversion</li>
+                    <li>Advanced flash-ambient blending</li>
+                    <li>Priority same-day highlight delivery</li>
+                </ul>
+                <!-- Opens Real Estate Luxury Calendar in a new tab -->
+                <a href="YOUR_REAL_ESTATE_CALENDAR_URL_HERE" target="_blank" rel="noopener noreferrer" class="cta-button" style="display: block; margin-top: 25px; width: 100%; padding: 12px; background: #d4af37; color: #111; font-weight: 600; text-align: center; text-decoration: none; border-radius: 4px; transition: opacity 0.3s ease;">Select & Book</a>
+             </div>
+
         </div>
     </section>
 	<!-- Frequently Asked Questions Section -->
@@ -138,20 +156,25 @@
             </div>
         </div>
     </section>
-    <section id="contact">
-        <h2>Book a Listing Shoot</h2>
-        <form class="reveal" id="contact-form">
-            <!-- Live feedback indicator -->
-            <div class="selected-package-indicator" id="package-display">Selected Package: Standard MLS Listing ($250)</div>
-            
-            <!-- Hidden input -->
-            <input type="hidden" name="selected_package" id="selected-package-input" value="Standard MLS Listing ($250)">
-            
-            <input type="text" name="name" placeholder="Your Name / Realtor" required>
-            <input type="email" name="email" placeholder="Your Email Address" required>
-            <input type="tel" name="phone" placeholder="Your Phone Number" required>
-            <textarea name="message" rows="5" placeholder="Property address, square footage, and preferred shoot date..." required></textarea>
-            <button type="submit">Submit Listing Inquiry</button>
+     <!-- General Inquiries & Custom Quotes Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="reveal" style="text-align: center; margin-bottom: 15px;">General Inquiries & Custom Quotes</h2>
+        <p class="section-desc reveal" style="text-align: center; margin-bottom: 40px;">Have a custom request, multi-property real estate shoot, or general question? Send a message below.</p>
+        
+        <form id="contact-form" class="reveal">
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="name" style="display: block; margin-bottom: 8px; color: #ccc;">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Your Name" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;">
+            </div>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label for="email" style="display: block; margin-bottom: 8px; color: #ccc;">Email</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;">
+            </div>
+            <div class="form-group" style="margin-bottom: 25px;">
+                <label for="message" style="display: block; margin-bottom: 8px; color: #ccc;">Message / Details</label>
+                <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project or inquiry..." style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px;"></textarea>
+            </div>
+            <button type="submit" class="cta-button submit-btn" style="width: 100%; padding: 14px; background: #d4af37; color: #111; font-weight: 600; border: none; border-radius: 4px; cursor: pointer;">Send Message</button>
         </form>
     </section>
 	<!-- Client Testimonials Section -->
