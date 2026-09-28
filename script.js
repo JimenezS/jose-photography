@@ -16,24 +16,29 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(el);
     });
 
-    // 2. Smooth Center-Referenced Sub-Parallax Effect
+    // 2. Smooth Sub-Parallax Effect
     const parallaxBgs = document.querySelectorAll('.hero-bg, .divider-bg');
-    if (parallaxBgs.length > 0) {
-        window.addEventListener('scroll', () => {
-            parallaxBgs.forEach(bg => {
-                const parent = bg.parentElement;
-                const rect = parent.getBoundingClientRect();
-                
-                // Only run calculations when the banner is visible in the viewport
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    // Distance from the center of the screen (eliminates entry jumps)
-                    const distanceCenter = rect.top + (rect.height / 2) - (window.innerHeight / 2);
-                    
-                    // Adjust speed safely here (e.g., 0.4 to 0.6)
-                    const speed = 0.5; 
-                    bg.style.transform = `translateY(${-distanceCenter * speed}px)`;
-                }
-            });
+    
+    function updateParallax() {
+        parallaxBgs.forEach(bg => {
+            const parent = bg.parentElement;
+            const rect = parent.getBoundingClientRect();
+            
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const distanceCenter = rect.top + (rect.height / 2) - (window.innerHeight / 2);
+                const speed = 0.8; 
+                bg.style.transform = `translateY(${-distanceCenter * speed}px)`;
+            }
         });
+    }
+
+    if (parallaxBgs.length > 0) {
+        // Run immediately on page load to eliminate the first-scroll snap
+        updateParallax();
+        
+        // Run smoothly during scroll using requestAnimationFrame
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(updateParallax);
+        }, { passive: true });
     }
 });
