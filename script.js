@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Enable reveal animations safely now that JS is confirmed running
+    document.body.classList.add('js-loaded');
+
     // 1. Apple-style Scroll Reveal Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -57,31 +60,26 @@ document.addEventListener("DOMContentLoaded", function() {
     // 4. Contact Form AJAX Submission & Floating Toast
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        // Dynamically create the toast notification element
         const toast = document.createElement('div');
         toast.className = 'toast-notification';
         toast.innerText = 'Inquiry submitted successfully. I will be in touch soon.';
         document.body.appendChild(toast);
 
         contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Stop page reload
-            
+            e.preventDefault();
             const formData = new FormData(contactForm);
 
             try {
-                // Replace 'https://formspree.io/f/your_endpoint_here' with your free Formspree URL 
-                // Once added, submissions will go directly to your inbox without leaving the page.
-                const response = await fetch('https://formspree.io/f/xrpbovpq, {
+                // Replace with your Formspree endpoint when ready
+                const response = await fetch('https://formspree.io/f/xrpbovpq', {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
 
-                // Show floating success toast regardless of mock/live fetch completion
                 toast.classList.add('show');
                 contactForm.reset();
 
-                // Automatically hide the toast after 4 seconds
                 setTimeout(() => {
                     toast.classList.remove('show');
                 }, 4000);

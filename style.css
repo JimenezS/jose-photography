@@ -123,16 +123,6 @@ button:hover { background: var(--green-hover); color: #000; }
 
 footer { text-align: center; padding: 50px; color: var(--accent); font-size: 0.9rem; font-weight: 300; letter-spacing: 1px; }
 
-/* Apple-style Smooth Scroll Reveal Classes */
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
 /* Modern Sleek Carousel */
 .carousel-section {
     padding: 90px 0;
@@ -236,4 +226,16 @@ footer { text-align: center; padding: 50px; color: var(--accent); font-size: 0.9
 .toast-notification.show {
     transform: translateY(0);
     opacity: 1;
+}
+
+/* Apple-style Smooth Scroll Reveal Classes (Only active when JS is running) */
+body.js-loaded .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body.js-loaded .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
