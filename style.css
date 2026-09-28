@@ -61,10 +61,19 @@ body {
     font-family: 'Lato', sans-serif; 
     font-weight: 400;
     color: var(--text); 
-    background-color: var(--bg); 
+    background: var(--bg); 
     line-height: 1.7; 
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* Bridge Real Estate variables to the active page variables when on the Real Estate page */
+body.real-estate-page {
+    --bg: var(--re-bg);
+    --surface: var(--re-surface);
+    --primary: var(--re-wood-dark);
+    --accent: var(--re-wood-warm);
+    --text: var(--re-text);
+    --card-bg: var(--re-surface);
 }
 
 h1, h2, h3 {
