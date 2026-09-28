@@ -39,17 +39,18 @@ header {
     position: relative;
 	overflow: hidden;	
 }
-.hero-bg {
-	position: absolute;
-	top: -20%;
-	left: 0;
-	width: 100%;
-	height: 140%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	will-change: transform;
-	z-index: 0;
+/* Expanded background layer to support higher parallax speeds without blank edges */
+.hero-bg, .divider-bg {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 200%; /* Increased from 140% to 200% for high-speed tracking */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+    z-index: 0;
 }
 
 .engagement-hero .hero-bg {
@@ -81,20 +82,6 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* Dedicated background layer for the divider sub-parallax movement */
-.divider-bg {
-    position: absolute;
-    top: -20%;
-    left: 0;
-    width: 100%;
-    height: 140%; /* Oversized height to allow smooth scrolling room */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    will-change: transform;
-    z-index: 0;
 }
 
 .divider-engagement-bg {

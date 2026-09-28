@@ -16,16 +16,22 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(el);
     });
 
-    // 2. Smooth Sub-Parallax Effect for Headers and Mid-Page Dividers
+    // 2. Smooth Center-Referenced Sub-Parallax Effect
     const parallaxBgs = document.querySelectorAll('.hero-bg, .divider-bg');
     if (parallaxBgs.length > 0) {
         window.addEventListener('scroll', () => {
             parallaxBgs.forEach(bg => {
-                const parentRect = bg.parentElement.getBoundingClientRect();
-                // Check if the parent banner is currently near or inside the viewport
-                if (parentRect.top < window.innerHeight && parentRect.bottom > 0) {
-                    const offset = (window.innerHeight - parentRect.top) * 0.15;
-                    bg.style.transform = `translateY(${offset}px)`;
+                const parent = bg.parentElement;
+                const rect = parent.getBoundingClientRect();
+                
+                // Only run calculations when the banner is visible in the viewport
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    // Distance from the center of the screen (eliminates entry jumps)
+                    const distanceCenter = rect.top + (rect.height / 2) - (window.innerHeight / 2);
+                    
+                    // Adjust speed safely here (e.g., 0.4 to 0.6)
+                    const speed = 0.5; 
+                    bg.style.transform = `translateY(${distanceCenter * speed}px)`;
                 }
             });
         });
