@@ -816,7 +816,6 @@ body.real-estate-theme .selected-package-indicator {
     margin-bottom: 15px;
     overflow: hidden;
     transition: border-color 0.3s ease, background-color 0.3s ease;
-	width:100%;
 }
 
 .faq-item:hover {
@@ -831,6 +830,7 @@ body.real-estate-theme .selected-package-indicator {
     align-items: center;
     cursor: pointer;
     user-select: none;
+	width: 100%;
 }
 
 .faq-question h3 {
