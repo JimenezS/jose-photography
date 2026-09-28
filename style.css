@@ -75,22 +75,36 @@ nav a:hover, nav a.active { color: var(--accent); border-bottom: 2px solid var(-
 /* Mid-Page Parallax Divider Banners */
 .divider-banner {
     height: 45vh;
-    background-size: cover;
-    background-position: center;
-	background-repeat: no-repeat;
-    background-attachment: fixed;
     margin: 60px 0;
+    position: relative;
+    overflow: hidden; /* Keeps the moving background cleanly inside the banner bounds */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.divider-engagement {
-    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('img/engagements/1-DSC01633.jpg');
+/* Dedicated background layer for the divider sub-parallax movement */
+.divider-bg {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 140%; /* Oversized height to allow smooth scrolling room */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    will-change: transform;
+    z-index: 0;
 }
 
-.divider-realestate {
-    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('placeholder-re2.jpg');
+.divider-engagement-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
+                url('img/engagements/11-DSC07548.jpg') center center / cover no-repeat;
+}
+
+.divider-realestate-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), 
+                url('placeholder-re2.jpg') center center / cover no-repeat;
 }
 
 section { padding: 90px 20px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #eee; }

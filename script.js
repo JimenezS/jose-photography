@@ -16,14 +16,18 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(el);
     });
 
-    // 2. Smooth Sub-Parallax Effect for Headers
-    const heroBg = document.querySelector('.hero-bg');
-    if (heroBg) {
+    // 2. Smooth Sub-Parallax Effect for Headers and Mid-Page Dividers
+    const parallaxBgs = document.querySelectorAll('.hero-bg, .divider-bg');
+    if (parallaxBgs.length > 0) {
         window.addEventListener('scroll', () => {
-            let scrollY = window.scrollY;
-            // Adjust the multiplier (e.g., 0.3) to control speed. 
-            // 0.3 means the image scrolls at 30% of the page speed.
-            heroBg.style.transform = `translateY(${scrollY * 0.8}px)`;
+            parallaxBgs.forEach(bg => {
+                const parentRect = bg.parentElement.getBoundingClientRect();
+                // Check if the parent banner is currently near or inside the viewport
+                if (parentRect.top < window.innerHeight && parentRect.bottom > 0) {
+                    const offset = (window.innerHeight - parentRect.top) * 0.15;
+                    bg.style.transform = `translateY(${offset}px)`;
+                }
+            });
         });
     }
 });
