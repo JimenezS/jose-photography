@@ -242,20 +242,56 @@ document.addEventListener("DOMContentLoaded", function() {
 				if (e.key === 'ArrowRight') showImage(currentIndex + 1);
 			});
 	}
-	// 8. Interactive FAQ Accordion Logic
-    const faqItems = document.querySelectorAll('.faq-item');
+	// 9. Real Estate Multiple Comparison Sliders Logic
+    const comparisonContainers = document.querySelectorAll('.comparison-container');
 
-    faqItems.forEach(item => {
-        const questionBtn = item.querySelector('.faq-question');
-        questionBtn.addEventListener('click', () => {
-            // Optional: Close other open FAQ items for a clean accordion effect
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
-            });
-            // Toggle active state on clicked item
-            item.classList.toggle('active');
+    comparisonContainers.forEach(container => {
+        const beforeLayer = container.querySelector('.comparison-before');
+        const handle = container.querySelector('.comparison-slider-handle');
+
+        let isDragging = false;
+
+        const updateSliderPosition = (clientX) => {
+            const rect = container.getBoundingClientRect();
+            let x = clientX - rect.left;
+
+            if (x < 0) x = 0;
+            if (x > rect.width) x = rect.width;
+
+            const percentage = (x / rect.width) * 100;
+
+            beforeLayer.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            handle.style.left = `${percentage}%`;
+        };
+
+        // Mouse Drag Events
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            updateSliderPosition(e.clientX);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            updateSliderPosition(e.clientX);
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Touch Swipe Events for Mobile / Tablets
+        container.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            updateSliderPosition(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            updateSliderPosition(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
         });
     });
 }

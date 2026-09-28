@@ -858,3 +858,76 @@ body.real-estate-theme .selected-package-indicator {
     max-height: 200px; /* Expands smoothly */
     padding: 0 25px 25px 25px;
 }
+/* ==========================================
+   BEFORE & AFTER COMPARISON SLIDER STYLES
+   ========================================== */
+.comparison-section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.comparison-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    cursor: ew-resize;
+    user-select: none;
+}
+
+.comparison-img-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.comparison-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+/* Before layer is clipped to reveal the after layer underneath */
+.comparison-before {
+    clip-path: inset(0 50% 0 0); /* Starts split right down the middle (50%) */
+    will-change: clip-path;
+}
+
+.comparison-slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    background: #d4af37; /* Luxury gold accent */
+    z-index: 10;
+    transform: translateX(-50%);
+    pointer-events: none;
+    will-change: left;
+}
+
+.handle-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(17, 17, 17, 0.9);
+    border: 2px solid #d4af37;
+    color: #d4af37;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
